@@ -26,7 +26,8 @@ defmodule Frozen.Mixfile do
         :logger,
         :gettext,
         :timex,
-        :yamerl
+        :yamerl,
+        :fs
       ]
     ]
   end
@@ -42,11 +43,12 @@ defmodule Frozen.Mixfile do
     [{:phoenix, "~> 1.2.1"},
      {:phoenix_pubsub, "~> 1.0"},
      {:phoenix_html, "~> 2.6"},
-     {:phoenix_live_reload, "~> 1.0", only: :dev},
+     {:phoenix_live_reload, "~> 1.0.8", only: :dev},
      {:gettext, "~> 0.11"},
      {:cowboy, "~> 1.0"},
      {:earmark, "~> 1.1"},
      {:timex, "~> 3.1.7"},
-     {:yaml_front_matter, "~> 0.2.0"}]
+     {:yaml_front_matter, "~> 0.2.0"},
+     {:fs, "~> 2.12", override: true}]
    end
 end
