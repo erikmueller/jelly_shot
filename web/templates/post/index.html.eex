@@ -1,0 +1,7 @@
+<div class="jumbotron">
+  <h2><%= gettext "Welcome to %{name}", name: "Frozen!" %></h2>
+
+  <%= for post <- @posts do %>
+    <%= raw post.content %>
+  <% end %>
+</div>

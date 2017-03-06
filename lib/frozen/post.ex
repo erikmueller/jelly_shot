@@ -1,6 +1,10 @@
 defmodule Frozen.Post do
   defstruct slug: "", author: "", title: "", date: "", intro: "", content: ""
 
+  def file_to_slug(file) do
+    file |> Path.basename(file) |> String.replace(~r/\.md$/, "")
+  end
+
   def compile(file) do
     Path.join(["priv/posts", file])
       |> split_frontmatter_markdown
@@ -27,9 +31,5 @@ defmodule Frozen.Post do
       intro: frontmatter["intro"],
       content: content
     }
-  end
-
-  defp file_to_slug(file) do
-    String.replace(file, ~r/\.md$/, "")
-  end
+  end  
 end

@@ -4,6 +4,6 @@ date: 2017-03-02
 intro: Read that so that you know about this awesome blog post content and so son and so forth...
 ---
 
-# Awesome heading
+# Awesome headline
 
-All awesome content here
+All awesome contens

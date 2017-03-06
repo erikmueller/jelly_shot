@@ -48,5 +48,5 @@ defmodule Frozen.Mixfile do
      {:earmark, "~> 1.1"},
      {:timex, "~> 3.1.7"},
      {:yaml_front_matter, "~> 0.2.0"}]
-  end
+   end
 end

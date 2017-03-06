@@ -1,7 +1,0 @@
-<div class="jumbotron">
-  <h2><%= gettext "Welcome to %{name}", name: "Frozen!" %></h2>
-  <p class="lead">
-      This is going to be a static site generator soon. <br>
-      <strong>Static. Elixir.</strong> ...got it?
-  </p>
-</div>

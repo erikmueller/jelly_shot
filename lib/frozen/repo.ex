@@ -17,4 +17,21 @@ defmodule Frozen.Repo do
       end
     end)
   end
+
+  def update_by_slug(slug) do
+    file_name = "#{slug}.md"
+    new_post = Frozen.Post.compile(file_name)
+
+    IO.puts "Recompiled #{file_name}"
+
+    Agent.update(__MODULE__, fn posts ->
+      ix = Enum.find_index(posts, &(&1.slug == slug))
+
+      if ix do
+        List.replace_at(posts, ix, new_post)
+      else
+        IO.warn "Failed to compile #{file_name}. Not Found."
+      end
+    end)
+  end
 end

@@ -13,10 +13,11 @@ defmodule Frozen.Router do
     plug :accepts, ["json"]
   end
 
-  scope "/", Frozen do
+  scope "/blog", Frozen do
     pipe_through :browser # Use the default browser stack
 
-    get "/", PageController, :index
+    get "/", PostController, :index
+    get "/posts/:slug", PostController, :show
   end
 
   # Other scopes may use custom stacks.
