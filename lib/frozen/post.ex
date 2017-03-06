@@ -2,32 +2,34 @@ defmodule Frozen.Post do
   defstruct slug: "", author: "", title: "", date: "", intro: "", content: ""
 
   def compile(file) do
-    post = %Frozen.Post{
-      slug: file_to_slug(file)
-    }
-
     Path.join(["priv/posts", file])
-      |> File.read!
       |> split_frontmatter_markdown
-      |> extract(post)
+      |> into_post
+  end
+
+  defp split_frontmatter_markdown(file) do
+    case YamlFrontMatter.parse_file(file) do
+      {:ok, frontmatter, markdown} -> {file, frontmatter, Earmark.as_html!(markdown)}
+      {:error, reason} -> {:error, file, reason}
+    end
+  end
+
+  defp into_post({:error, file, reason}) do
+    raise "Failed to compile #{file}. Reason #{reason}"
+  end
+
+  defp into_post({file, frontmatter, content}) do
+    %Frozen.Post{
+      slug: file_to_slug(file),
+      title: frontmatter["title"],
+      author: frontmatter["author"],
+      date: Timex.parse!(frontmatter["date"], "{ISOdate}"),
+      intro: frontmatter["intro"],
+      content: content
+    }
   end
 
   defp file_to_slug(file) do
     String.replace(file, ~r/\.md$/, "")
-  end
-
-  defp split_frontmatter_markdown(data) do
-   {:ok, frontmatter, markdown} = YamlFrontMatter.parse(data)
-   {frontmatter, Earmark.as_html!(markdown)}
-  end
-
-  defp extract({props, content}, post) do
-    %{post |
-      title: props["title"],
-      author: props["author"],
-      date: Timex.parse!(props["date"], "{ISOdate}"),
-      intro: props["intro"],
-      content: content
-    }
   end
 end

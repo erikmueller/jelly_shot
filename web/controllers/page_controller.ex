@@ -1,7 +1,10 @@
+alias Frozen.Repo
+
 defmodule Frozen.PageController do
   use Frozen.Web, :controller
 
   def index(conn, _params) do
-    render conn, "index.html"
+    {:ok, posts} = Repo.list()
+    render conn, "index.html", posts: posts
   end
 end
