@@ -3,8 +3,9 @@ layout: post
 title: "Programming beyond the comfort zone: The Phoenix Framework"
 date: "2017-02-09"
 image: blog-header/phoenix.jpg
-categories: tech-stories
-authors: ["Erik"]
+intro: "In the last post we checked why you should learn some more languages and why Elixir might help you becoming a better JavaScript developer. Now I promised to go deeper into web development. A popular (if not the most popular) web framework for Elixir is Phoenix."
+categories: ["tech-stories"]
+authors: ["Erik", "whoever"]
 ---
 
 In the [last post](https://developer.epages.com/blog/2017/02/02/programming-beyond-the-comfort-zone-javascript-elixir.html) we checked why you should learn some more languages and why Elixir might help you becoming a better JavaScript developer.

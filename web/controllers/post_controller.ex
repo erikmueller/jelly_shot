@@ -6,6 +6,7 @@ defmodule Frozen.PostController do
 
   def index(conn, _params) do
     {:ok, posts} = Repo.list()
+
     render conn, "index.html", posts: posts
   end
 

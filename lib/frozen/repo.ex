@@ -16,9 +16,9 @@ defmodule Frozen.Repo do
       |> Enum.map(&Task.await/1)
       |> Enum.sort(&sort/2)
 
-      Logger.debug "Compiled #{Enum.count(posts)} posts in #{Timex.diff Timex.now(), start, :milliseconds}ms."
+    Logger.debug "Compiled #{Enum.count(posts)} posts in #{Timex.diff Timex.now(), start, :milliseconds}ms."
 
-      posts
+    posts
   end
 
   def list() do

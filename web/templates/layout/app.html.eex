@@ -4,34 +4,59 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
 
-    <title>Hello Frozen!</title>
+    <%=
+      render_existing(@view_module, "meta." <> @view_template, assigns) ||
+      render(Frozen.LayoutView, "meta.html", assigns)
+    %>
+
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/styles/github-gist.css") %>">
   </head>
 
   <body>
-    <div class="container">
-      <p>This aweseome thingy will be powered by</p>
-      <header class="header">
+    <div class="container-fluid">
+      <div class="row-fluid">
+        <div class="span2">
+          <nav>
+            <h3>Categories</h3>
+            <ul>
+            <%= for category <- get_categories() do %>
+              <li><%= category %></li>
+            <% end %>
+            </ul>
+          </nav>
+        </div>
+        <div class="span10">
+          <main role="main">
+            <%= render @view_module, @view_template, assigns %>
+          </main>
+        </div>
+      </div>
+    </div>
+    <!-- <div class="container">
+      <header>
+        <p>This aweseome thingy is powered by</p>
         <span class="logo"></span>
       </header>
 
-      <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
-      <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
+      <nav>
+        <h3>Categories</h3>
+        <ul>
+        <%= for category <- get_categories() do %>
+          <li><%= category %></li>
+        <% end %>
+        </ul>
+      </nav>
 
       <main role="main">
         <%= render @view_module, @view_template, assigns %>
       </main>
+    </div> -->
 
-    </div> <!-- /container -->
-    <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
     <script src="<%= static_path(@conn, "/js/highlight.pack.js") %>"></script>
     <script>
       hljs.initHighlightingOnLoad();
     </script>
-
   </body>
 </html>

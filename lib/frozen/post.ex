@@ -1,5 +1,5 @@
 defmodule Frozen.Post do
-  defstruct slug: "", author: "", title: "", date: "", intro: "", content: ""
+  defstruct slug: "", authors: [], title: "", date: "", intro: "", categories: [], content: ""
 
   def file_to_slug(file) do
     file |> Path.basename(file) |> String.replace(~r/\.md$/, "")
@@ -26,10 +26,11 @@ defmodule Frozen.Post do
     %Frozen.Post{
       slug: file_to_slug(file),
       title: frontmatter["title"],
-      author: frontmatter["author"],
+      authors: frontmatter["authors"],
       date: Timex.parse!(frontmatter["date"], "{ISOdate}"),
       intro: frontmatter["intro"],
+      categories: frontmatter["categories"],
       content: content
     }
-  end  
+  end
 end
