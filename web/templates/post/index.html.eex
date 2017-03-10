@@ -1,9 +1,52 @@
-<%= for post <- @posts do %>
-  <a href="/blog/posts/<%= post.slug %>">
-    <h3><%= post.title %></h3>
-  </a>
-  <article><%= raw post.intro %></article>
-  <br>
-  <aside>By <%= post.authors |> Enum.intersperse(", ") %> in <%= post.categories %></aside>
-  <hr />
-<% end %>
+<% [pinned_post | recent_posts] = @posts %>
+
+<div class="posts">
+  <h1 class="content-subhead">Pinned Post</h1>
+
+  <!-- A single blog post -->
+  <section class="post">
+    <header class="post-header">
+        <a href="/blog/posts/<%= pinned_post.slug %>">
+          <h2 class="post-title"><%= pinned_post.title %></h2>
+        </a>
+
+        <p class="post-meta">
+          By <a href="#" class="post-author"><%= pinned_post.authors %></a> under
+
+          <%= for category <- pinned_post.categories do %>
+            <a href="#" class="post-category post-category-<%= category %>"><%= category %></a>
+          <% end %>
+        </p>
+    </header>
+
+    <div class="post-description">
+      <p><%= pinned_post.intro %></p>
+    </div>
+  </section>
+</div>
+
+<div class="posts">
+    <h1 class="content-subhead">Recent Posts</h1>
+
+    <%= for post <- recent_posts do %>
+      <section class="post">
+        <header class="post-header">
+          <a href="/blog/posts/<%= post.slug %>">
+            <h2 class="post-title"><%= post.title %></h2>
+          </a>
+
+          <p class="post-meta">
+            By <a href="#"><%= post.authors %></a>
+
+            <%= for category <- post.categories do %>
+              <a href="#" class="post-category post-category-<%= category %>"><%= category %></a>
+            <% end %>
+          </p>
+        </header>
+
+        <div class="post-description">
+          <p><%= raw post.intro %></p>
+        </div>
+      </section>
+    <% end %>
+</div>
