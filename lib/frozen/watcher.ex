@@ -16,28 +16,23 @@ defmodule Frozen.Watcher do
     {:ok, state}
   end
 
-  def handle_info({_pid, {:fs, :file_event}, {path, [:created]}}, _) do
-    Logger.info "Created file #{path}"
+  def handle_info({_pid, {:fs, :file_event}, {path, [:inodemetamod]}}, _) do
     {:noreply, :ignored}
   end
 
-  # def handle_info({_pid, {:fs, :file_event}, {path, event}}, _) do
-  #   path
-  #     |> Frozen.Post.file_to_slug
-  #     |> Frozen.Repo.update_by_slug
-  #
-  #   {:noreply, :ignored}
-  # end
+  def handle_info({_pid, {:fs, :file_event}, {path, event}}, state) do
+    # We get an array of several events but we are only interested if there
+    # was any modification
+    if Enum.member?(event, :modified) do
+      path
+        |> Frozen.Post.file_to_slug
+        |> Frozen.Repo.update_by_slug
+    # in any other case we need to recompile the whole list since `:rename` could be
+    # triggered by a lot of changes (rename, delete, ...)
+    else
+      Frozen.Repo.init()
+    end
 
-  def handle_info({_pid, {:fs, :file_event}, {path, _}}, _) do
-    path
-      |> Frozen.Post.file_to_slug
-      |> Frozen.Repo.update_by_slug
-
-    {:noreply, :ignored}
+    {:noreply, state}
   end
-
-  # def handle_info(_, state) do
-  #   {:noreply, state}
-  # end
 end
