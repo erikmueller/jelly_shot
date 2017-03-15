@@ -1,8 +1,8 @@
 require Logger
 
-alias Frozen.Post
+alias JellyShot.Post
 
-defmodule Frozen.Repo do
+defmodule JellyShot.Repo do
   def start_link do
     Agent.start_link(&get_initial_state/0, name: __MODULE__)
   end

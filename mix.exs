@@ -1,8 +1,8 @@
-defmodule Frozen.Mixfile do
+defmodule JellyShot.Mixfile do
   use Mix.Project
 
   def project do
-    [app: :frozen,
+    [app: :jelly_shot,
      version: "0.0.1",
      elixir: "~> 1.2",
      elixirc_paths: elixirc_paths(Mix.env),
@@ -17,7 +17,7 @@ defmodule Frozen.Mixfile do
   # Type `mix help compile.app` for more information.
   def application do
     [
-      mod: {Frozen, []},
+      mod: {JellyShot, []},
       applications: [
         :phoenix,
         :phoenix_pubsub,
@@ -26,7 +26,7 @@ defmodule Frozen.Mixfile do
         :logger,
         :gettext,
         :timex,
-        :yamerl,
+        :yaml_elixir,
         :fs
       ]
     ]

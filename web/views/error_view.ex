@@ -1,5 +1,5 @@
-defmodule Frozen.ErrorView do
-  use Frozen.Web, :view
+defmodule JellyShot.ErrorView do
+  use JellyShot.Web, :view
 
   def render("404.html", _assigns) do
     "Page not found"

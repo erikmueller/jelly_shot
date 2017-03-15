@@ -1,6 +1,6 @@
 require Logger
 
-defmodule Frozen.Watcher do
+defmodule JellyShot.Watcher do
   use GenServer
 
   def start_link() do
@@ -20,24 +20,24 @@ defmodule Frozen.Watcher do
     new_state = cond do
       Enum.member?(event, :created) ->
         Logger.debug "Created #{path}"
-        Frozen.Repo.anew()
+        JellyShot.Repo.anew()
 
       #  Atom sure does a lot of renaming (actual rename, delete, ...)
       Enum.member?(event, :renamed) ->
         Logger.debug "Renamed #{path}"
-        Frozen.Repo.anew()
+        JellyShot.Repo.anew()
 
       Enum.member?(event, :modified) ->
         Logger.debug "Modified #{path}"
         path
-        |> Frozen.Post.file_to_slug
-        |> Frozen.Repo.update_by_slug
+        |> JellyShot.Post.file_to_slug
+        |> JellyShot.Repo.update_by_slug
 
       Enum.member?(event, :removed) ->
         Logger.debug "removed #{path}"
         path
-        |> Frozen.Post.file_to_slug
-        |> Frozen.Repo.delete_by_slug
+        |> JellyShot.Post.file_to_slug
+        |> JellyShot.Repo.delete_by_slug
     end
 
     {:noreply, new_state}

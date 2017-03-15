@@ -1,5 +1,5 @@
-defmodule Frozen.LayoutView do
-  use Frozen.Web, :view
+defmodule JellyShot.LayoutView do
+  use JellyShot.Web, :view
 
   def render("meta.html", _assigns) do
     ~E"""
@@ -11,7 +11,7 @@ defmodule Frozen.LayoutView do
   end
 
   def get_categories() do
-    {:ok, posts} = Frozen.Repo.list()
+    {:ok, posts} = JellyShot.Repo.list()
 
     posts
       |> Enum.reduce([], fn (post, acc) -> acc ++ post.categories end)

@@ -1,12 +1,12 @@
-defmodule Frozen.Web do
+defmodule JellyShot.Web do
   @moduledoc """
   A module that keeps using definitions for controllers,
   views and so on.
 
   This can be used in your application as:
 
-      use Frozen.Web, :controller
-      use Frozen.Web, :view
+      use JellyShot.Web, :controller
+      use JellyShot.Web, :view
 
   The definitions below will be executed for every view,
   controller, etc, so keep them short and clean, focused
@@ -26,8 +26,8 @@ defmodule Frozen.Web do
     quote do
       use Phoenix.Controller
 
-      import Frozen.Router.Helpers
-      import Frozen.Gettext
+      import JellyShot.Router.Helpers
+      import JellyShot.Gettext
     end
   end
 
@@ -41,9 +41,9 @@ defmodule Frozen.Web do
       # Use all HTML functionality (forms, tags, etc)
       use Phoenix.HTML
 
-      import Frozen.Router.Helpers
-      import Frozen.ErrorHelpers
-      import Frozen.Gettext
+      import JellyShot.Router.Helpers
+      import JellyShot.ErrorHelpers
+      import JellyShot.Gettext
     end
   end
 
@@ -56,7 +56,7 @@ defmodule Frozen.Web do
   def channel do
     quote do
       use Phoenix.Channel
-      import Frozen.Gettext
+      import JellyShot.Gettext
     end
   end
 

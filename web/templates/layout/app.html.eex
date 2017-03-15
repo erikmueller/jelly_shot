@@ -11,7 +11,7 @@
 
     <%=
       render_existing(@view_module, "meta." <> @view_template, assigns) ||
-      render(Frozen.LayoutView, "meta.html", assigns)
+      render(JellyShot.LayoutView, "meta.html", assigns)
     %>
 
   </head>

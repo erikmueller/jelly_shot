@@ -6,7 +6,6 @@ image: blog-header/nachos.jpg
 categories: ["javascript"]
 authors: ["Erik"]
 ---
-
 Some weeks ago we attended the `code.talks` developer conference in Hamburg.
 Besides the amazing location (which was the Cinemaxx Dammtor) and the awesome catering (as much nachos, popcorn and Mate as you can endure) the conference was also (who would have guessed that) packed with lots of interesting presentations and people.
 

@@ -1,4 +1,4 @@
-defmodule Frozen do
+defmodule JellyShot do
   use Application
 
   # See http://elixir-lang.org/docs/stable/elixir/Application.html
@@ -9,24 +9,24 @@ defmodule Frozen do
     # Define workers and child supervisors to be supervised
     children = [
       # Start the endpoint when the application starts
-      supervisor(Frozen.Endpoint, []),
-      # Start your own worker by calling: Frozen.Worker.start_link(arg1, arg2, arg3)
-      # worker(Frozen.Worker, [arg1, arg2, arg3]),
-      worker(Frozen.Repo, []),
-      worker(Frozen.Watcher, [])
+      supervisor(JellyShot.Endpoint, []),
+      # Start your own worker by calling: JellyShot.Worker.start_link(arg1, arg2, arg3)
+      # worker(JellyShot.Worker, [arg1, arg2, arg3]),
+      worker(JellyShot.Repo, []),
+      worker(JellyShot.Watcher, [])
 
     ]
 
     # See http://elixir-lang.org/docs/stable/elixir/Supervisor.html
     # for other strategies and supported options
-    opts = [strategy: :one_for_one, name: Frozen.Supervisor]
+    opts = [strategy: :one_for_one, name: JellyShot.Supervisor]
     Supervisor.start_link(children, opts)
   end
 
   # Tell Phoenix to update the endpoint configuration
   # whenever the application is updated.
   def config_change(changed, _new, removed) do
-    Frozen.Endpoint.config_change(changed, removed)
+    JellyShot.Endpoint.config_change(changed, removed)
     :ok
   end
 end

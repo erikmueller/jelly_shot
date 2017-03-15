@@ -1,12 +1,12 @@
-defmodule Frozen.Endpoint do
-  use Phoenix.Endpoint, otp_app: :frozen
+defmodule JellyShot.Endpoint do
+  use Phoenix.Endpoint, otp_app: :jelly_shot
 
   # Serve at "/" the static files from "priv/static" directory.
   #
   # You should set gzip to true if you are running phoenix.digest
   # when deploying your static files in production.
   plug Plug.Static,
-    at: "/", from: :frozen, gzip: false,
+    at: "/", from: :jelly_shot, gzip: false,
     only: ~w(css fonts images js favicon.ico robots.txt)
 
   # Code reloading can be explicitly enabled under the
@@ -33,8 +33,8 @@ defmodule Frozen.Endpoint do
   # Set :encryption_salt if you would also like to encrypt it.
   plug Plug.Session,
     store: :cookie,
-    key: "_frozen_key",
+    key: "_jelly_shot_key",
     signing_salt: "Dyq0m4p9"
 
-  plug Frozen.Router
+  plug JellyShot.Router
 end

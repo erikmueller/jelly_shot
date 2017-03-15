@@ -1,3 +1,3 @@
-defmodule Frozen.PageViewTest do
-  use Frozen.ConnCase, async: true
+defmodule JellyShot.PageViewTest do
+  use JellyShot.ConnCase, async: true
 end

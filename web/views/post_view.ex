@@ -1,5 +1,5 @@
-defmodule Frozen.PostView do
-  use Frozen.Web, :view
+defmodule JellyShot.PostView do
+  use JellyShot.Web, :view
 
   def render("meta.show.html", %{post: post}) do
     %{slug: slug, title: title, intro: intro} = post

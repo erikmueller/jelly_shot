@@ -1,4 +1,4 @@
-# Frozen
+# JellyShot
 
 To start your Phoenix app:
 

@@ -1,3 +1,3 @@
-defmodule Frozen.LayoutViewTest do
-  use Frozen.ConnCase, async: true
+defmodule JellyShot.LayoutViewTest do
+  use JellyShot.ConnCase, async: true
 end

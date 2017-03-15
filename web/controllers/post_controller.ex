@@ -1,8 +1,8 @@
-alias Frozen.Repo
-alias Frozen.ErrorView
+alias JellyShot.Repo
+alias JellyShot.ErrorView
 
-defmodule Frozen.PostController do
-  use Frozen.Web, :controller
+defmodule JellyShot.PostController do
+  use JellyShot.Web, :controller
 
   def index(conn, _params) do
     {:ok, posts} = Repo.list()

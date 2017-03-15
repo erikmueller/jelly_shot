@@ -1,6 +1,6 @@
 require Logger
 
-defmodule Frozen.Post do
+defmodule JellyShot.Post do
   defstruct slug: "", authors: [], title: "", date: "", intro: "", categories: [], content: ""
 
   def file_to_slug(file) do
@@ -30,7 +30,7 @@ defmodule Frozen.Post do
   defp into_post({:error, reason}), do: {:error, reason}
 
   defp into_post({file, frontmatter, content}) do
-    {:ok, %Frozen.Post{
+    {:ok, %JellyShot.Post{
       slug: file_to_slug(file),
       title: frontmatter["title"],
       authors: frontmatter["authors"],

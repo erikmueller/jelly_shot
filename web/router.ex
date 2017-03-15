@@ -1,5 +1,5 @@
-defmodule Frozen.Router do
-  use Frozen.Web, :router
+defmodule JellyShot.Router do
+  use JellyShot.Web, :router
 
   pipeline :browser do
     plug :accepts, ["html"]
@@ -13,7 +13,7 @@ defmodule Frozen.Router do
     plug :accepts, ["json"]
   end
 
-  scope "/blog", Frozen do
+  scope "/blog", JellyShot do
     pipe_through :browser # Use the default browser stack
 
     get "/", PostController, :index
@@ -21,7 +21,7 @@ defmodule Frozen.Router do
   end
 
   # Other scopes may use custom stacks.
-  # scope "/api", Frozen do
+  # scope "/api", JellyShot do
   #   pipe_through :api
   # end
 end

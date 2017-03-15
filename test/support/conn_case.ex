@@ -1,4 +1,4 @@
-defmodule Frozen.ConnCase do
+defmodule JellyShot.ConnCase do
   @moduledoc """
   This module defines the test case to be used by
   tests that require setting up a connection.
@@ -20,10 +20,10 @@ defmodule Frozen.ConnCase do
       # Import conveniences for testing with connections
       use Phoenix.ConnTest
 
-      import Frozen.Router.Helpers
+      import JellyShot.Router.Helpers
 
       # The default endpoint for testing
-      @endpoint Frozen.Endpoint
+      @endpoint JellyShot.Endpoint
     end
   end
 

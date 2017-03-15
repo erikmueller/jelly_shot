@@ -1,5 +1,5 @@
-defmodule Frozen.PageControllerTest do
-  use Frozen.ConnCase
+defmodule JellyShot.PageControllerTest do
+  use JellyShot.ConnCase
 
   test "GET /", %{conn: conn} do
     conn = get conn, "/"

@@ -6,11 +6,11 @@
 use Mix.Config
 
 # Configures the endpoint
-config :frozen, Frozen.Endpoint,
+config :jelly_shot, JellyShot.Endpoint,
   url: [host: "localhost"],
   secret_key_base: "9iGMbCvTq9bL9JqACLqA9mUdnCOKU3/AdCkgUFsqe3PMZL0zWVvMnFLkP4JGsKAI",
-  render_errors: [view: Frozen.ErrorView, accepts: ~w(html json)],
-  pubsub: [name: Frozen.PubSub,
+  render_errors: [view: JellyShot.ErrorView, accepts: ~w(html json)],
+  pubsub: [name: JellyShot.PubSub,
            adapter: Phoenix.PubSub.PG2]
 
 # Configures Elixir's Logger

@@ -1,4 +1,4 @@
-defmodule Frozen.ErrorHelpers do
+defmodule JellyShot.ErrorHelpers do
   @moduledoc """
   Conveniences for translating and building error messages.
   """
@@ -32,9 +32,9 @@ defmodule Frozen.ErrorHelpers do
     #     dgettext "errors", "is invalid"
     #
     if count = opts[:count] do
-      Gettext.dngettext(Frozen.Gettext, "errors", msg, msg, count, opts)
+      Gettext.dngettext(JellyShot.Gettext, "errors", msg, msg, count, opts)
     else
-      Gettext.dgettext(Frozen.Gettext, "errors", msg, opts)
+      Gettext.dgettext(JellyShot.Gettext, "errors", msg, opts)
     end
   end
 end
