@@ -6,16 +6,10 @@ defmodule JellyShot do
   def start(_type, _args) do
     import Supervisor.Spec
 
-    # Define workers and child supervisors to be supervised
     children = [
-      # Start the endpoint when the application starts
       supervisor(JellyShot.Endpoint, []),
-      # Start your own worker by calling: JellyShot.Worker.start_link(arg1, arg2, arg3)
-      # worker(JellyShot.Worker, [arg1, arg2, arg3]),
-      worker(JellyShot.Repo, []),
-      worker(JellyShot.Watcher, [])
-
-    ]
+      worker(JellyShot.Repo, [])
+    ] ++ if Mix.env == :dev, do: [worker(JellyShot.Watcher, [])], else: []
 
     # See http://elixir-lang.org/docs/stable/elixir/Supervisor.html
     # for other strategies and supported options
