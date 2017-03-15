@@ -242,3 +242,6 @@ I hope these posts made you curious and showed you some things beyond the JavaSc
 [Let me know](https://twitter.com/epagesdevs?lang=de) what you think.
 
 Thanks for reading.
+foo
+foo
+foo

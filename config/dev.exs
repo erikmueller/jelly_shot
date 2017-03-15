@@ -10,8 +10,8 @@ config :frozen, Frozen.Endpoint,
   http: [port: 4000],
   debug_errors: true,
   code_reloader: true,
-  check_origin: false,
-  watchers: [npm: ["start"]]
+  check_origin: false
+  # watchers: [npm: ["start"]]
 
 
 # Watch static and templates for browser reloading.

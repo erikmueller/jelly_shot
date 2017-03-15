@@ -9,8 +9,8 @@ defmodule Frozen.Post do
 
   def compile(file) do
     Path.join(["priv/posts", file])
-      |> split_frontmatter_markdown
-      |> into_post
+    |> split_frontmatter_markdown
+    |> into_post
   end
 
   defp split_frontmatter_markdown(file) do

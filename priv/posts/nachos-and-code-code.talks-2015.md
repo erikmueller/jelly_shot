@@ -3,7 +3,7 @@ layout: post
 title: "code.talks: code & nachos"
 date: "2015-10-28"
 image: blog-header/nachos.jpg
-categories: ["events"]
+categories: ["javascript"]
 authors: ["Erik"]
 ---
 
