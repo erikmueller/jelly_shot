@@ -22,7 +22,7 @@ a {
 }
 a:hover,
 a:focus {
-    text-decoration: underline;
+    text-decoration: none;
 }
 
 h3 {
@@ -50,7 +50,11 @@ h3 {
     color: #fff;
 }
 
-.brand-title,
+.brand-title {
+    color: white;
+    margin: 0;
+}
+
 .brand-tagline {
     margin: 0;
 }
@@ -126,10 +130,11 @@ h3 {
     font-size: 80%;
 }
     .post-category-elixir {
-        background: #ef7900;
+        background: #745882;
     }
-    .post-category-pure {
-        background: #4d85d1;
+    .post-category-javascript {
+        color: #333;
+        background: #f0db4f;
     }
 
 .post-images {

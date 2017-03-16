@@ -22,6 +22,18 @@ defmodule JellyShot.Repo do
     end)
   end
 
+  def get_by_category(category) do
+    Agent.get(__MODULE__, fn posts ->
+      {:ok, Enum.filter(posts, &(Enum.member?(&1.categories, category)))}
+    end)
+  end
+
+  def get_by_author(author) do
+    Agent.get(__MODULE__, fn posts ->
+      {:ok, Enum.filter(posts, &(Enum.member?(&1.authors, author)))}
+    end)
+  end
+
   def update_by_slug(slug) do
     start = Timex.now()
     file_name = "#{slug}.md"
@@ -63,7 +75,7 @@ defmodule JellyShot.Repo do
     end)
   end
 
-  def get_initial_state() do
+  defp get_initial_state() do
     start = Timex.now()
 
     posts = File.ls!("priv/posts")

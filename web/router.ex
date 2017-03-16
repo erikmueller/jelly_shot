@@ -18,6 +18,8 @@ defmodule JellyShot.Router do
 
     get "/", PostController, :index
     get "/posts/:slug", PostController, :show
+    get "/categories/:category", CategoryController, :show
+    get "/authors/:author", AuthorController, :show
   end
 
   # Other scopes may use custom stacks.

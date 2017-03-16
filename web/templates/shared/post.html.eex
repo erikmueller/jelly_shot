@@ -1,0 +1,23 @@
+<section class="post">
+  <header class="post-header">
+    <a href="/blog/posts/<%= @post.slug %>">
+      <h2 class="post-title"><%= @post.title %></h2>
+    </a>
+
+    <p class="post-meta">
+      By
+      <%= for author <- @post.authors do %>
+        <a href="/blog/authors/<%= author %>"><%= author %></a>
+      <% end %>
+
+      in
+      <%= for category <- @post.categories do %>
+        <a href="/blog/categories/<%= category %>" class="post-category post-category-<%= category %>"><%= category %></a>
+      <% end %>
+    </p>
+  </header>
+
+  <div class="post-description">
+    <p><%= raw @post.intro %></p>
+  </div>
+</section>

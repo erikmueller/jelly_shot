@@ -1,0 +1,6 @@
+<div class="posts">
+  <h1 class="content-subhead">Posts by <%= @author %></h1>
+  <%= for post <- @posts do %>
+    <%= render JellyShot.SharedView, "post.html", post: post %>
+  <% end %>
+</div>
