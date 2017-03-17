@@ -5,6 +5,7 @@
 /*.ez
 /node_modules
 *.log*
+priv/static
 
 # Generated on crash by the VM
 erl_crash.dump

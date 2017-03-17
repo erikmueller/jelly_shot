@@ -1,0 +1,31 @@
+{
+  "name": "jelly_shot",
+  "version": "0.0.1",
+  "description": "To start your Phoenix app:",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "webpack": "webpack --watch --progress --colors --hide-modules=true",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/erikmueller/jelly_shot.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/erikmueller/jelly_shot/issues"
+  },
+  "homepage": "https://github.com/erikmueller/jelly_shot#readme",
+  "devDependencies": {
+    "css-loader": "^0.27.3",
+    "extract-text-webpack-plugin": "^2.1.0",
+    "less": "^2.7.2",
+    "less-loader": "^3.0.0",
+    "style-loader": "^0.14.1",
+    "webpack": "^2.2.1"
+  }
+}
