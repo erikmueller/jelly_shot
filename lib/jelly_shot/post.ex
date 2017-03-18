@@ -1,7 +1,7 @@
 require Logger
 
 defmodule JellyShot.Post do
-  defstruct slug: "", authors: [], title: "", date: "", intro: "", categories: [], content: ""
+  defstruct slug: "", authors: [], title: "", date: "", intro: "", categories: [], image: "", content: ""
 
   def file_to_slug(file) do
     file |> Path.basename(file) |> String.replace(~r/\.md$/, "")
@@ -36,6 +36,7 @@ defmodule JellyShot.Post do
       authors: frontmatter["authors"],
       date: frontmatter["date"],
       intro: frontmatter["intro"],
+      image: frontmatter["image"],
       categories: frontmatter["categories"],
       content: content
     }}

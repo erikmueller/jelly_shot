@@ -1,5 +1,6 @@
 const path = require('path')
 const ExtractTextPlugin = require("extract-text-webpack-plugin")
+const CopyWebpackPlugin = require("copy-webpack-plugin")
 
 const extractLess = new ExtractTextPlugin({
     filename: "[name].css",
@@ -9,10 +10,10 @@ const extractLess = new ExtractTextPlugin({
 module.exports = {
     context: path.resolve(__dirname, './web/static/'),
     entry: {
-        'css/bundle': './styles/style.less',
-        'css/vendor': [
-            'purecss/build/base-min.css',
-            'purecss/build/grids-responsive-min.css'
+        'js/bundle': './js/app.js',
+        'css/bundle': [
+          './styles/style.less',
+          'highlight.js/styles/obsidian.css'
         ]
     },
     output: {
@@ -24,12 +25,12 @@ module.exports = {
             test: /\.(less|css)$/,
             use: extractLess.extract({
                 use: ["css-loader", "less-loader"],
-                // use style-loader in development
                 fallback: "style-loader"
             })
         }]
     },
     plugins: [
+        new CopyWebpackPlugin([{from: 'assets/**/*.{jpg,png}'}]),
         extractLess
     ]
 }

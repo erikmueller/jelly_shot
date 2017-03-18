@@ -1,3 +1,9 @@
+<%= if @post.image do %>
+  <div class="post-header-image-container">
+    <img class="post-header-image" src="<%= @post.image %>" alt="<%= @post.title %>"/>
+  </div>
+<% end %>
+
 <h1><%= @post.title %></h1>
 
 <article><%= raw @post.content %></article>

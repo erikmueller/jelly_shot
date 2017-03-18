@@ -2,7 +2,7 @@
 layout: post
 title: "code.talks: code & nachos"
 date: "2015-10-28"
-image: blog-header/nachos.jpg
+image: /assets/nature.jpg
 categories: ["javascript"]
 authors: ["Erik"]
 ---
