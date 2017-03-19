@@ -7,38 +7,45 @@ defmodule JellyShot.Post do
     file |> Path.basename(file) |> String.replace(~r/\.md$/, "")
   end
 
-  def compile(file) do
-    Path.join(["priv/posts", file])
-    |> split_frontmatter_markdown
-    |> into_post
-  end
+  def compile(file_name) do
+    file = Path.join(["priv/posts", file_name])
 
-  defp split_frontmatter_markdown(file) do
-    case YamlFrontMatter.parse_file(file) do
-      {:ok, frontmatter, markdown} ->
-        case Timex.parse(frontmatter["date"], "{ISOdate}") do
-          {:ok, parsed_date} ->
-            {file, Map.put(frontmatter, "date", parsed_date), Earmark.as_html!(markdown)}
-          {:error, _} ->
-            {:error, "Failed to compile #{file}. Reason invalid_date"}
-        end
+    case compile_file(file) do
+      {:ok, post} -> {:ok, post}
       {:error, reason} ->
-        {:error, "Failed to compile #{file}. Reason #{reason}"}
+        Logger.warn "Failed to compile #{file}, #{reason}"
+
+        {:error, reason}
     end
   end
 
-  defp into_post({:error, reason}), do: {:error, reason}
+  defp compile_file(file) do
+    with{:ok, matter, body} <- split_frontmatter(file),
+        {:ok, html, _} <- Earmark.as_html(body),
+    do: {:ok, into_post(file, matter, html)}
+  end
 
-  defp into_post({file, frontmatter, content}) do
-    {:ok, %JellyShot.Post{
+  defp split_frontmatter(file) do
+    with{:ok, matter, body} <- parse_yaml_frontmatter(file),
+        {:ok, parsed_date} <- Timex.parse(matter.date, "{ISOdate}"),
+    do: {:ok, %{matter | date: parsed_date}, body}
+  end
+
+  defp parse_yaml_frontmatter(file) do
+    case YamlFrontMatter.parse_file(file) do
+      {:ok, matter, body} ->
+        {:ok, Map.new(matter, fn {k, v} -> {String.to_atom(k), v} end), body}
+      {:error, reason} ->
+        {:error, reason}
+    end
+  end
+
+  defp into_post(file, meta, html) do
+    data = %{
       slug: file_to_slug(file),
-      title: frontmatter["title"],
-      authors: frontmatter["authors"],
-      date: frontmatter["date"],
-      intro: frontmatter["intro"],
-      image: frontmatter["image"],
-      categories: frontmatter["categories"],
-      content: content
-    }}
+      content: html,
+    } |> Map.merge(meta)
+
+    struct(JellyShot.Post, data)
   end
 end

@@ -16,7 +16,7 @@ defmodule JellyShot.Watcher do
     {:ok, state}
   end
 
-  def handle_info({_pid, {:fs, :file_event}, {path, event}}, _) do
+  def handle_info({_pid, {:fs, :file_event}, {path, event}}, state) do
     new_state = cond do
       Enum.member?(event, :created) ->
         Logger.debug "Created #{path}"
@@ -31,13 +31,15 @@ defmodule JellyShot.Watcher do
         Logger.debug "Modified #{path}"
         path
         |> JellyShot.Post.file_to_slug
-        |> JellyShot.Repo.update_by_slug
+        |> JellyShot.Repo.upsert_by_slug
 
       Enum.member?(event, :removed) ->
         Logger.debug "removed #{path}"
         path
         |> JellyShot.Post.file_to_slug
         |> JellyShot.Repo.delete_by_slug
+
+      true -> state
     end
 
     {:noreply, new_state}

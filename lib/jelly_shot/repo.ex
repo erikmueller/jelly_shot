@@ -34,43 +34,29 @@ defmodule JellyShot.Repo do
     end)
   end
 
-  def update_by_slug(slug) do
+  def upsert_by_slug(slug) do
     start = Timex.now()
     file_name = "#{slug}.md"
 
     case Post.compile(file_name) do
       {:ok, new_post} ->
         Agent.update(__MODULE__, fn posts ->
-          ix = Enum.find_index(posts, &(&1.slug == slug))
+          Logger.info "Updated #{file_name} in #{Timex.diff Timex.now(), start, :milliseconds}ms."
 
-          if ix do
-            Logger.info "Updated #{file_name} in #{Timex.diff Timex.now(), start, :milliseconds}ms."
-
-            List.replace_at(posts, ix, new_post)
-          else
-            Logger.warn "Failed to update #{file_name}. Not Found."
-
-            posts
+          case Enum.find_index(posts, &(&1.slug == slug)) do
+            nil -> List.insert_at(posts, 0, new_post) |> Enum.sort(&sort/2)
+            idx -> List.replace_at(posts, idx, new_post)
           end
         end)
-      {:error, reason} -> Logger.warn reason
+      {:error, _} -> :ignored
     end
   end
 
   def delete_by_slug(slug) do
-    file_name = "#{slug}.md"
-
     Agent.update(__MODULE__, fn posts ->
-      ix = Enum.find_index(posts, &(&1.slug == slug))
-
-      if ix do
-        Logger.info "Removed #{file_name}"
-
-        List.delete_at(posts, ix)
-      else
-        Logger.warn "Failed to remove #{file_name}. Not Found."
-
-        posts
+      case Enum.find_index(posts, &(&1.slug == slug)) do
+        nil -> posts
+        idx -> List.delete_at(posts, idx)
       end
     end)
   end
@@ -82,7 +68,7 @@ defmodule JellyShot.Repo do
     |> Enum.filter(&(Path.extname(&1) == ".md"))
     |> Enum.map(&compile_async/1)
     |> Enum.map(&Task.await/1)
-    |> Enum.reduce([], &aggregate_valid_posts/2)
+    |> Enum.reduce([], &valid_into_list/2)
     |> Enum.sort(&sort/2)
 
     Logger.debug "Compiled #{Enum.count(posts)} posts in #{Timex.diff Timex.now(), start, :milliseconds}ms."
@@ -92,24 +78,12 @@ defmodule JellyShot.Repo do
 
   defp compile_async(file), do: Task.async(fn -> Post.compile file end)
 
-  defp aggregate_valid_posts(item, acc) do
+  defp valid_into_list(item, acc) do
     case item do
       {:ok, post} -> acc ++ [post]
-      {:error, reason} ->
-        Logger.warn reason
-        acc
+      {:error, _} -> acc
     end
   end
 
-  defp sort(a, b) do
-    date_a = a.date
-    date_b = b.date
-
-    if (
-      date_a
-      && date_b
-      && Timex.is_valid? date_a
-      && Timex.is_valid? date_b
-    ), do: Timex.compare(date_a, date_b) > 0, else: true
-  end
+  defp sort(a, b), do: Timex.compare(a.date, b.date) > 0
 end
