@@ -17,9 +17,8 @@ defmodule JellyShot.Router do
     pipe_through :browser # Use the default browser stack
 
     get "/", PostController, :index
+    get "/posts", PostController, :index
     get "/posts/:slug", PostController, :show
-    get "/categories/:category", CategoryController, :show
-    get "/authors/:author", AuthorController, :show
   end
 
   # Other scopes may use custom stacks.

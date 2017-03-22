@@ -30,7 +30,7 @@
           <ul class="nav-list">
             <%= for category <- get_categories() do %>
               <li class="nav-list-item nav-list-item-category">
-                <a href="/blog/categories/<%= category %>"><%= category %></a>
+                <a href="/blog/posts?category=<%= category %>"><%= category %></a>
               </li>
             <% end %>
           </ul>

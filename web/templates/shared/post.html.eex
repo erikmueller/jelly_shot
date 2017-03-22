@@ -7,12 +7,12 @@
     <p class="post-meta">
       By
       <%= for author <- @post.authors do %>
-        <a href="/blog/authors/<%= author %>"><%= author %></a>
+        <a href="/blog/posts?author=<%= author %>"><%= author %></a>
       <% end %>
 
       in
       <%= for category <- @post.categories do %>
-        <a href="/blog/categories/<%= category %>" class="post-category post-category-<%= category %>"><%= category %></a>
+        <a href="/blog/posts?category=<%= category %>" class="post-category post-category-<%= category %>"><%= category %></a>
       <% end %>
     </p>
   </header>
