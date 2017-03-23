@@ -41,7 +41,10 @@ a {
 .blog {
   &-avatar {
     float: left;
-    margin: 0 0 1em 0;
+
+    & img {
+      margin-left: 1em
+    }
   }
 
   &-title {
@@ -128,6 +131,7 @@ a {
 
     &-container {
       height: 200px;
+      width: 100%;
       overflow-y: hidden;
     }
   }
@@ -170,7 +174,7 @@ a {
   .blog-avatar {
     height: 180px;
     float: none;
-    margin-left: 0;
+    margin: 0 0 1em 0;
   }
 
   .post-header-image-container {
