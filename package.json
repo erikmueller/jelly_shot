@@ -8,7 +8,8 @@
   },
   "scripts": {
     "webpack": "webpack --watch --progress --colors --hide-modules=true",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "presenter": "reveal-md README.md"
   },
   "repository": {
     "type": "git",
@@ -26,6 +27,7 @@
     "extract-text-webpack-plugin": "^2.1.0",
     "less": "^2.7.2",
     "less-loader": "^3.0.0",
+    "reveal-md": "^0.1.2",
     "style-loader": "^0.14.1",
     "webpack": "^2.2.1"
   },
