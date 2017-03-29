@@ -65,18 +65,16 @@ defmodule JellyShot.Repo do
     start = Timex.now()
 
     posts = File.ls!("priv/posts")
-    |> Enum.filter(&(Path.extname(&1) == ".md"))
-    |> Enum.map(&compile_async/1)
-    |> Enum.map(&Task.await/1)
-    |> Enum.reduce([], &valid_into_list/2)
+    |> Flow.from_enumerable(max_demand: 1)
+    |> Flow.filter_map(&(Path.extname(&1) == ".md"), &Post.compile/1)
+    |> Flow.partition
+    |> Flow.reduce(fn -> [] end, &valid_into_list/2)
     |> Enum.sort(&sort/2)
 
     Logger.debug "Compiled #{Enum.count(posts)} posts in #{Timex.diff Timex.now(), start, :milliseconds}ms."
 
     posts
   end
-
-  defp compile_async(file), do: Task.async(fn -> Post.compile file end)
 
   defp valid_into_list(item, acc) do
     case item do
