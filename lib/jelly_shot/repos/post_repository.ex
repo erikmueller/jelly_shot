@@ -2,7 +2,9 @@ require Logger
 
 alias JellyShot.Post
 
-defmodule JellyShot.Repo do
+defmodule JellyShot.PostRepository do
+  @post_location Application.get_env(:jelly_shot, :post_location, "priv/posts")
+
   def start_link do
     Agent.start_link(&get_initial_state/0, name: __MODULE__)
   end
@@ -38,7 +40,7 @@ defmodule JellyShot.Repo do
     start = Timex.now()
     file_name = "#{slug}.md"
 
-    case Post.compile(file_name) do
+    case Post.generate(file_name) do
       {:ok, new_post} ->
         Agent.update(__MODULE__, fn posts ->
           Logger.info "Updated #{file_name} in #{Timex.diff Timex.now(), start, :milliseconds}ms."
@@ -64,9 +66,9 @@ defmodule JellyShot.Repo do
   defp get_initial_state() do
     start = Timex.now()
 
-    posts = File.ls!("priv/posts")
+    posts = File.ls!(@post_location)
     |> Flow.from_enumerable(max_demand: 1)
-    |> Flow.filter_map(&(Path.extname(&1) == ".md"), &Post.compile/1)
+    |> Flow.filter_map(&(Path.extname(&1) == ".md"), &Post.generate/1)
     |> Flow.partition
     |> Flow.reduce(fn -> [] end, &valid_into_list/2)
     |> Enum.sort(&sort/2)

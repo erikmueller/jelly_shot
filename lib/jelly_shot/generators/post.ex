@@ -1,16 +1,18 @@
 require Logger
 
 defmodule JellyShot.Post do
+  @post_location Application.get_env(:jelly_shot, :post_location, "priv/posts")
+
   defstruct slug: "", authors: [], title: "", date: "", intro: "", categories: [], image: "", content: ""
 
   def file_to_slug(file) do
     file |> Path.basename(file) |> String.replace(~r/\.md$/, "")
   end
 
-  def compile(file_name) do
-    file = Path.join(["priv/posts", file_name])
+  def generate(file_name) do
+    file = Path.join([@post_location, file_name])
 
-    case compile_file(file) do
+    case generate_file(file) do
       {:ok, post} -> {:ok, post}
       {:error, reason} ->
         Logger.warn "Failed to compile #{file}, #{reason}"
@@ -19,7 +21,7 @@ defmodule JellyShot.Post do
     end
   end
 
-  defp compile_file(file) do
+  defp generate_file(file) do
     with{:ok, matter, body} <- split_frontmatter(file),
         {:ok, html, _} <- Earmark.as_html(body),
     do: {:ok, into_post(file, matter, html)}

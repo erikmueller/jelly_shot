@@ -1,4 +1,4 @@
-alias JellyShot.Repo
+alias JellyShot.PostRepository, as: Repo
 alias JellyShot.ErrorView
 
 defmodule JellyShot.PostController do

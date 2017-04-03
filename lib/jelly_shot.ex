@@ -8,8 +8,8 @@ defmodule JellyShot do
 
     children = [
       supervisor(JellyShot.Endpoint, []),
-      worker(JellyShot.Repo, [])
-    ] ++ if Mix.env == :dev, do: [worker(JellyShot.Watcher, [])], else: []
+      worker(JellyShot.PostRepository, [])
+    ] ++ if Mix.env == :dev, do: [worker(JellyShot.PostWatcher, [])], else: []
 
     # See http://elixir-lang.org/docs/stable/elixir/Supervisor.html
     # for other strategies and supported options

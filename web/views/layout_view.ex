@@ -1,3 +1,5 @@
+alias JellyShot.PostRepository, as: Repo
+
 defmodule JellyShot.LayoutView do
   use JellyShot.Web, :view
 
@@ -11,7 +13,7 @@ defmodule JellyShot.LayoutView do
   end
 
   def get_categories() do
-    {:ok, posts} = JellyShot.Repo.list()
+    {:ok, posts} = Repo.list()
 
     posts
       |> Enum.reduce([], fn (post, acc) -> acc ++ post.categories end)
