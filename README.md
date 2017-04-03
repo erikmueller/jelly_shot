@@ -8,7 +8,7 @@ revealOptions:
     transition: 'slide'
 ---
 
-# Jelly Shot ![Elixir](https://hexdocs.pm/elixir/assets/logo.png) <!-- .element style="border: none; background: none;" -->
+#  Jelly Shot ![CircleCI](https://circleci.com/gh/erikmueller/jelly_shot/tree/master.svg?style=svg) <!-- .element style="border: none; background: none;" -->
 
 A semi static blog engine
 
