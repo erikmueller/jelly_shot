@@ -9,7 +9,8 @@ defmodule JellyShot.Mixfile do
      compilers: [:phoenix, :gettext] ++ Mix.compilers,
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
-     deps: deps()]
+     deps: deps(),
+     test_coverage: [tool: ExCoveralls]]
   end
 
   # Configuration for the OTP application.
@@ -50,6 +51,7 @@ defmodule JellyShot.Mixfile do
      {:timex, "~> 3.1.7"},
      {:yaml_front_matter, "~> 0.2.0"},
      {:flow, "~> 0.11"},
-     {:fs, "~> 2.12", override: true}]
+     {:fs, "~> 2.12", override: true},
+     {:excoveralls, "~> 0.6.3"}]
    end
 end
