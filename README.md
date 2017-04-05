@@ -8,10 +8,11 @@ revealOptions:
     transition: 'slide'
 ---
 
-#  Jelly Shot ![CircleCI](https://circleci.com/gh/erikmueller/jelly_shot/tree/master.svg?style=svg) <!-- .element style="border: none; background: none;" -->
+![CircleCI](https://circleci.com/gh/erikmueller/jelly_shot/tree/master.svg?style=svg)  <!-- .element style="border: none; background: none;" --> ![codecov](https://codecov.io/gh/erikmueller/jelly_shot/branch/master/graph/badge.svg) <!-- .element style="border: none; background: none;" -->
+
+# Jelly Shot
 
 A semi static blog engine
-
 
 <!--s-->
 
