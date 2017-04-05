@@ -2,10 +2,8 @@ defmodule JellyShot.PostTest do
   use ExUnit.Case
   alias JellyShot.Post
 
-  @filename "/test/support/test-file.md"
-
   test "file_to_slug" do
-    assert Post.file_to_slug(@filename) == "test-file"
+    assert Post.file_to_slug("/test/support/test-file.md") == "test-file"
   end
 
   test "generate" do
@@ -19,5 +17,11 @@ defmodule JellyShot.PostTest do
       slug: "test_file",
       title: "test post"
     }} = Post.generate("test_file.md")
+  end
+
+  test "fail to generate" do
+    assert {:error, :enoent} = Post.generate("file_not_found.md")
+    assert {:error, :invalid_front_matter} = Post.generate("file_invalid_frontmatter.md")
+    assert {:error, "Expected `4 digit year` at line 1, column 1."} = Post.generate("file_invalid_date.md")
   end
 end
