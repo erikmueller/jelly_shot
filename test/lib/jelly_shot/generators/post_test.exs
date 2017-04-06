@@ -13,7 +13,7 @@ defmodule JellyShot.PostTest do
       content: "<h1>This</h1>\n<p><em>is</em> <strong>markdown</strong>!</p>\n",
       date: ~N[2015-10-28 00:00:00],
       image: "/assets/nature.jpg",
-      intro: "",
+      intro: "test intro",
       slug: "test_file",
       title: "test post"
     }} = Post.generate("test_file.md")
