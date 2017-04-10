@@ -3,7 +3,9 @@ require Logger
 alias JellyShot.Post
 
 defmodule JellyShot.PostRepository do
-  @post_location Application.get_env(:jelly_shot, :post_location, "priv/posts")
+  @source Application.get_env(:jelly_shot, :repositories)[:post]
+
+  def get_source, do: @source
 
   def start_link do
     Agent.start_link(&get_initial_state/0, name: __MODULE__)
@@ -36,16 +38,15 @@ defmodule JellyShot.PostRepository do
     end)
   end
 
-  def upsert_by_slug(slug) do
+  def upsert_by_file_name(file_name) do
     start = Timex.now()
-    file_name = "#{slug}.md"
 
     case Post.generate(file_name) do
       {:ok, new_post} ->
         Agent.update(__MODULE__, fn posts ->
           Logger.info "Updated #{file_name} in #{Timex.diff Timex.now(), start, :milliseconds}ms."
 
-          case Enum.find_index(posts, &(&1.slug == slug)) do
+          case Enum.find_index(posts, &(&1.file_name == file_name)) do
             nil -> List.insert_at(posts, 0, new_post) |> Enum.sort(&sort/2)
             idx -> List.replace_at(posts, idx, new_post)
           end
@@ -54,9 +55,9 @@ defmodule JellyShot.PostRepository do
     end
   end
 
-  def delete_by_slug(slug) do
+  def delete_by_file_name(file_name) do
     Agent.update(__MODULE__, fn posts ->
-      case Enum.find_index(posts, &(&1.slug == slug)) do
+      case Enum.find_index(posts, &(&1.file_name == file_name)) do
         nil -> posts
         idx -> List.delete_at(posts, idx)
       end
@@ -66,7 +67,8 @@ defmodule JellyShot.PostRepository do
   defp get_initial_state() do
     start = Timex.now()
 
-    posts = File.ls!(@post_location)
+    posts = File.ls!(@source)
+    |> Enum.map(&(Path.join([@source, &1])))
     |> Flow.from_enumerable(max_demand: 1)
     |> Flow.filter_map(&(Path.extname(&1) == ".md"), &Post.generate/1)
     |> Flow.partition
