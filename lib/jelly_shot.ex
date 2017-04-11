@@ -6,10 +6,11 @@ defmodule JellyShot do
   def start(_type, _args) do
     import Supervisor.Spec
 
+    repos = Application.get_env(:jelly_shot, :repositories) || []
+
     children = [
       supervisor(JellyShot.Endpoint, []),
-      worker(JellyShot.PostRepository, [])
-    ] ++ if Mix.env == :dev, do: [worker(JellyShot.PostWatcher, [])], else: []
+    ] ++ Enum.map(repos, &(worker(&1[:module], [&1[:source]])))
 
     # See http://elixir-lang.org/docs/stable/elixir/Supervisor.html
     # for other strategies and supported options
