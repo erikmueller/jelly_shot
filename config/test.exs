@@ -6,8 +6,9 @@ config :jelly_shot, JellyShot.Endpoint,
   http: [port: 4001],
   server: false
 
-config :jelly_shot, :repositories,
-  post: "test/support"
+config :jelly_shot, repositories: [
+  [module: JellyShot.PostRepository, source: "test/support"]
+]
 
 # Print only warnings and errors during test
 config :logger, level: :warn

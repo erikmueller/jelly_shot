@@ -1,10 +1,10 @@
 require Logger
 
 defmodule JellyShot.Post do
-  defstruct file: "", slug: "", authors: [], title: "", date: "", intro: "", categories: [], image: "", content: ""
+  defstruct file_name: "", slug: "", authors: [], title: "", date: "", intro: "", categories: [], image: "", content: ""
 
-  def generate(file) do
-    case do_generate(file) do
+  def transform(file) do
+    case do_transform(file) do
       {:ok, post} -> {:ok, post}
       {:error, reason} ->
         Logger.warn "Failed to compile #{file}, #{reason}"
@@ -13,7 +13,7 @@ defmodule JellyShot.Post do
     end
   end
 
-  defp do_generate(file) do
+  defp do_transform(file) do
     with{:ok, matter, body} <- split_frontmatter(file),
         {:ok, html, _} <- Earmark.as_html(body),
     do: {:ok, into_post(file, matter, html)}

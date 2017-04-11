@@ -13,9 +13,9 @@ defmodule JellyShot.PostTest do
       image: "/assets/nature.jpg",
       intro: "test intro",
       slug: "test_file",
-      file: test_file,
+      file_name: "test/support/test_file.md",
       title: "test post"
-    }} = Post.generate(test_file)
+    }} = Post.transform(test_file)
   end
 
   test "fail to generate" do
@@ -23,8 +23,8 @@ defmodule JellyShot.PostTest do
     file_invalid_frontmatter = "test/support/file_invalid_frontmatter.md"
     file_invalid_date = "test/support/file_invalid_date.md"
 
-    assert {:error, :enoent} = Post.generate(file_not_found)
-    assert {:error, :invalid_front_matter} = Post.generate(file_invalid_frontmatter)
-    assert {:error, "Expected `4 digit year` at line 1, column 1."} = Post.generate(file_invalid_date)
+    assert {:error, :enoent} = Post.transform(file_not_found)
+    assert {:error, :invalid_front_matter} = Post.transform(file_invalid_frontmatter)
+    assert {:error, "Expected `4 digit year` at line 1, column 1."} = Post.transform(file_invalid_date)
   end
 end
