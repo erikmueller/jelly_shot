@@ -11,7 +11,7 @@
   },
   "scripts": {
     "webpack": "webpack --watch --progress --colors --hide-modules=true",
-    "build": "webpack",
+    "heroku-postbuild": "webpack",
     "test": "echo \"Error: no test specified\" && exit 1",
     "presenter": "reveal-md README.md"
   },
@@ -25,17 +25,15 @@
     "url": "https://github.com/erikmueller/jelly_shot/issues"
   },
   "homepage": "https://github.com/erikmueller/jelly_shot#readme",
-  "devDependencies": {
+  "dependencies": {
     "copy-webpack-plugin": "^4.0.1",
     "css-loader": "^0.27.3",
     "extract-text-webpack-plugin": "^2.1.0",
+    "highlight.js": "^9.10.0",
     "less": "^2.7.2",
     "less-loader": "^3.0.0",
     "reveal-md": "^0.1.2",
     "style-loader": "^0.14.1",
     "webpack": "^2.2.1"
-  },
-  "dependencies": {
-    "highlight.js": "^9.10.0"
   }
 }
