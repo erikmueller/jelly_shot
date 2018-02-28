@@ -1,7 +1,10 @@
 {
   "name": "jelly_shot",
   "version": "0.0.1",
-  "description": "To start your Phoenix app:",
+  "description": "",
+  "engines": {
+    "yarn": "1.4.0"
+  },
   "main": "index.js",
   "directories": {
     "test": "test"
