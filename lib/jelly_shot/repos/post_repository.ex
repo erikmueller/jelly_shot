@@ -19,7 +19,7 @@ defmodule JellyShot.PostRepository do
 
   def get_by_slug(slug) do
     Agent.get(__MODULE__, fn posts ->
-      case Enum.find(posts, &(&1.slug == slug)) do
+      case Enum.find(posts, &(URI.decode(&1.slug) == slug)) do
         nil -> :not_found
         post -> {:ok, post}
       end

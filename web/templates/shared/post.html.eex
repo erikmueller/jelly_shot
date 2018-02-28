@@ -1,18 +1,18 @@
 <section class="post">
   <header class="post-header">
-    <a href="/blog/posts/<%= @post.slug %>">
+    <a href="/posts/<%= @post.slug %>">
       <h2 class="post-title"><%= @post.title %></h2>
     </a>
 
     <p class="post-meta">
       By
       <%= for author <- @post.authors do %>
-        <a href="/blog/posts?author=<%= author %>"><%= author %></a>
+        <a href="/posts?author=<%= author %>"><%= author %></a>
       <% end %>
 
       in
       <%= for category <- @post.categories do %>
-        <a href="/blog/posts?category=<%= category %>" class="post-category post-category-<%= category %>"><%= category %></a>
+        <a href="/posts?category=<%= category %>" class="post-category post-category-<%= category %>"><%= category %></a>
       <% end %>
     </p>
   </header>

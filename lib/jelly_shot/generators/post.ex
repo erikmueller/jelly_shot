@@ -35,7 +35,7 @@ defmodule JellyShot.Post do
   end
 
   defp file_to_slug(file) do
-    file |> Path.basename(file) |> String.replace(~r/\.md$/, "")
+    file |> Path.basename(file) |> String.replace(~r/\.md$/, "") |> URI.encode
   end
 
   defp into_post(file, meta, html) do

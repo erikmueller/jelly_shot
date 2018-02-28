@@ -21,16 +21,16 @@
           <img src="<%= static_path(@conn, "/assets/me.jpg") %>" alt="Erik M&uuml;ller"/>
         </div>
 
-        <a href="/blog">
-          <h1 class="blog-title">Dev Blog</h1>
+        <a href="/">
+          <h1 class="blog-title">DevLock</h1>
         </a>
-        <h2 class="blog-tagline">Pure &amp; Phoenix</h2>
+        <h2 class="blog-tagline">smarty thoughts</h2>
 
         <nav>
           <ul class="nav-list">
             <%= for category <- get_categories() do %>
               <li class="nav-list-item nav-list-item-category">
-                <a href="/blog/posts?category=<%= category %>"><%= category %></a>
+                <a href="/posts?category=<%= category %>"><%= category %></a>
               </li>
             <% end %>
           </ul>

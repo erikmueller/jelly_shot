@@ -13,7 +13,7 @@ defmodule JellyShot.Router do
     plug :accepts, ["json"]
   end
 
-  scope "/blog", JellyShot do
+  scope "/", JellyShot do
     pipe_through :browser # Use the default browser stack
 
     get "/", PostController, :index
