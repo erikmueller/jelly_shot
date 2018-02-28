@@ -8,6 +8,7 @@
   },
   "scripts": {
     "webpack": "webpack --watch --progress --colors --hide-modules=true",
+    "build": "webpack",
     "test": "echo \"Error: no test specified\" && exit 1",
     "presenter": "reveal-md README.md"
   },

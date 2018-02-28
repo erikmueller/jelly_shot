@@ -1,0 +1,3 @@
+info "Building Phoenix static assets"
+npm run build
+mix phoenix.digest
