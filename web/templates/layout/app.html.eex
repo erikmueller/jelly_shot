@@ -38,9 +38,7 @@
       </div>
     </div>
 
-    <div class="content">
-        <%= render @view_module, @view_template, assigns %>
-    </div>
+    <%= render @view_module, @view_template, assigns %>
 
     <div class="footer">
       <ul class="nav-list">

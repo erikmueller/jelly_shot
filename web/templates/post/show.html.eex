@@ -4,6 +4,10 @@
   </div>
 <% end %>
 
-<h1><%= @post.title %></h1>
+<div class="content">
+  <div class="content-sheet">
+    <h1><%= @post.title %></h1>
 
-<article><%= raw @post.content %></article>
+    <article><%= raw @post.content %></article>
+  </div>
+</div>

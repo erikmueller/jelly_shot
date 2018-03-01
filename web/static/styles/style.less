@@ -7,7 +7,7 @@
 body {
   font-family: Helvetica, sans-serif;
   color: #444;
-  line-height: 1.8em;
+  line-height: 1.7em;
   margin: 0;
 }
 
@@ -44,7 +44,7 @@ a {
     float: left;
 
     & img {
-      height: 180px;
+      height: 120px;
       margin-left: 1em;
     }
   }
@@ -56,7 +56,7 @@ a {
   }
 
   &-tagline {
-    margin: 0.3em 0 1em 0;
+    font-size: 1.3em;
     font-weight: 300;
     color: #ef7900;
   }
@@ -104,6 +104,11 @@ a {
     line-height: 1.2em;
   }
 
+  &-sheet {
+    padding: 1em;
+    box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.3), 0px 0px 10px rgba(0, 0, 0, 0.1);
+  }
+
   &-subhead {
     text-transform: uppercase;
     color: #aaa;
@@ -134,8 +139,7 @@ a {
     width: 100%;
 
     &-container {
-      height: 200px;
-      width: 100%;
+      height: 100px;
       overflow-y: hidden;
     }
   }
@@ -178,19 +182,28 @@ a {
   .blog-avatar {
     float: none;
     margin: 0 0 1em 0;
+
+    img {
+      height: 180px;
+    }
   }
 
   .post-header-image-container {
-    margin-top: -2em;
+    margin-left: 16em;
+    height: 13em;
   }
 
   .content {
-    padding: 2em 5em;
-    margin-left: 20%;
+    margin-left: 15em;
+
+    &-sheet {
+      padding: 3em;
+      max-width: 1024px;
+    }
   }
 
   .header {
-    margin: 80% 1em 0;
+    margin: 12em 1em 0;
     text-align: right;
   }
 
@@ -198,13 +211,13 @@ a {
     position: fixed;
     top: 0;
     bottom: 0;
-    width: 20%;
+    width: 212px;
   }
 
   .footer {
     background: none;
     text-align: left;
-    margin-left: 20%;
+    margin-left: 12em;
     padding-left: 5em;
   }
 }
