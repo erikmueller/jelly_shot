@@ -11,7 +11,7 @@ defmodule JellyShot.PostRepository do
     Agent.start_link(&get_initial_state/0, name: __MODULE__)
   end
 
-  def anew, do: Agent.update(__MODULE__, fn _ -> get_initial_state() end)
+  def anew, do: Agent.update(__MODULE__, &get_initial_state/0)
 
   def list do
     Agent.get(__MODULE__, fn posts -> {:ok, posts} end)
@@ -46,7 +46,7 @@ defmodule JellyShot.PostRepository do
         Agent.update(__MODULE__, fn posts ->
           Logger.info "Updated #{file_name} in #{Timex.diff Timex.now(), start, :milliseconds}ms."
 
-          case Enum.find_index(posts, &(&1.file_name == file_name)) do
+          case Enum.find_index(posts, &(Path.relative_to_cwd(&1.file) == Path.relative_to_cwd(file_name))) do
             nil -> List.insert_at(posts, 0, new_post) |> Enum.sort(&sort/2)
             idx -> List.replace_at(posts, idx, new_post)
           end
@@ -57,7 +57,7 @@ defmodule JellyShot.PostRepository do
 
   def delete_by_file_name(file_name) do
     Agent.update(__MODULE__, fn posts ->
-      case Enum.find_index(posts, &(&1.file_name == file_name)) do
+      case Enum.find_index(posts, &(Path.relative_to_cwd(&1.file) == Path.relative_to_cwd(file_name))) do
         nil -> posts
         idx -> List.delete_at(posts, idx)
       end

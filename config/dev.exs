@@ -10,8 +10,7 @@ config :jelly_shot, JellyShot.Endpoint,
   http: [port: 4000],
   debug_errors: true,
   code_reloader: true,
-  check_origin: false,
-  watchers: [npm: ["run", "webpack"]]
+  check_origin: false
 
 
 # Watch static and templates for browser reloading.

@@ -3,12 +3,13 @@ layout: post
 title: "code.talks: code & nachos"
 date: "2015-10-28"
 image: /assets/nature.jpg
-intro: "Some weeks ago we attended the `code.talks` developer conference in Hamburg.
+intro: "22 weeks ago we attended the `code.talks` developer conference in Hamburg.
 Besides the amazing location (which was the Cinemaxx Dammtor) and the awesome catering (as much nachos, popcorn and Mate as you can endure) the conference was also (who would have guessed that) packed with lots of interesting presentations and people."
 categories: ["javascript"]
 authors: ["Erik"]
 ---
-Some weeks ago we attended the `code.talks` developer conference in Hamburg.
+
+3 weeks ago we attended the `code.talks` developer conference in Hamburg.
 Besides the amazing location (which was the Cinemaxx Dammtor) and the awesome catering (as much nachos, popcorn and Mate as you can endure) the conference was also (who would have guessed that) packed with lots of interesting presentations and people.
 
 Listening to the many great presentations we found things that we're already doing right (according to the speakers) but also other aspects we can improve on.
@@ -18,23 +19,23 @@ One last word of advice: Not everything should be taken too seriously ;)
 
 ## 1. Node is acknowledged by the Java world
 
-The first talk (I attended) was about *JavaScript on Java Servers* and was said to cover how the new kid on the block coming around as JavaScript 5 and JavaScript 6 is going to run on a Java Server.
+The first talk (I attended) was about _JavaScript on Java Servers_ and was said to cover how the new kid on the block coming around as JavaScript 5 and JavaScript 6 is going to run on a Java Server.
 Our Java gurus instantly asked the ultimate question: What is a "Java Server"?
 Ok, we all knew it's probably the JVM.
 And I myself was wondering if the JavaScript versions 5 and 6 might have something to do with the corresponding ECMA-Script standards.
 But hey, let's not get hung up on naming issues, shall we?
 
-Besides advertising *jWebSockets* there was a benchmark showing that *Nashorn* (the new JavaScript engine coming with Java8) is way faster than the old *Rhino* (Java6/7) implementation.
+Besides advertising _jWebSockets_ there was a benchmark showing that _Nashorn_ (the new JavaScript engine coming with Java8) is way faster than the old _Rhino_ (Java6/7) implementation.
 While leveraging Java8's `invokedynamic` it takes some additional time to warm up but afterwards outruns rhino for good.
-With *warming up* the "compiler people" refer to having the programme optimised by the machine until it runs several 10 times faster than in a cold state.
+With _warming up_ the "compiler people" refer to having the programme optimised by the machine until it runs several 10 times faster than in a cold state.
 And honestly the difference was impressive.
-That being said I noticed that `V8`, Google's JavaScript engine powering *nodejs* as well as Chrome, still being **twice** as fast as the warmed up Nashorn.
+That being said I noticed that `V8`, Google's JavaScript engine powering _nodejs_ as well as Chrome, still being **twice** as fast as the warmed up Nashorn.
 Now that's something.
 
 Anyway, one has to keep in mind that Google threw a lot of resources into developing this awesome piece of software.
 Of course you don't get all of the JVM's nifty little things like concurrency, sandboxing and... well basically the complete Java stack but there have to be some drawbacks, right?
 To overcome this single-process-problem, node recently introduced a completely overhauled `cluster` module.
-This native module as well as process managers like *pm2* and *strongloop* do a great job in distributing load between several single-threaded node processes (and with that still crushing any JVM based JS engine).
+This native module as well as process managers like _pm2_ and _strongloop_ do a great job in distributing load between several single-threaded node processes (and with that still crushing any JVM based JS engine).
 
 Nonetheless, the talk was pretty interesting with regards to what is possible with the JVM and how easy it is to run JavaScript code on a "Java Server" (I was again reminded why Java is called a typed language: Because you have to type so freaking much!).
 Things to keep in mind though: All used `npm` packages must be "nashorn compatible".
@@ -65,9 +66,9 @@ The scenario described was one that I myself experienced one time or another: Th
 A developer finishes a feature and sends it to Operations.
 Now they can deal with it!
 **But**: It might be hard to deploy because of several reasons (be it a changed database structure or some changes in the build pipeline), it might have bugs, break other features or cause who knows what.
-So a developer should not only take care of finishing the feature assigned to him but also have in mind that there's work *after* he did his final commit.
+So a developer should not only take care of finishing the feature assigned to him but also have in mind that there's work _after_ he did his final commit.
 He (or she of course) should feel responsible for the software as a whole (and everything that is related to it).
 
-The 1&1 guys gave several tips on how to improve communications and workflows. They also talked about how *they* tried to establish DevOps.
+The 1&1 guys gave several tips on how to improve communications and workflows. They also talked about how _they_ tried to establish DevOps.
 Bringing together developers and operations not only smoothens (and probably speeds up) the workflows but also widens the knowledge of both department's members.
 And learning new things can never be bad ;)
