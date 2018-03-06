@@ -1,0 +1,5 @@
+<div class="content">
+  <div class="content-sheet">
+    <article><%= raw @content %></article>
+  </div>
+</div>

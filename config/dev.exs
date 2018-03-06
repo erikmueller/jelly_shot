@@ -26,7 +26,8 @@ config :jelly_shot, JellyShot.Endpoint,
   ]
 
 config :jelly_shot, repositories: [
-  [module: JellyShot.PostRepository, source: "priv/posts"]
+  [module: JellyShot.PostRepository, source: "priv/posts"],
+  [module: JellyShot.CVRepository, source: "priv/docs"]
 ]
 
 # Do not include metadata nor timestamps in development logs

@@ -14,18 +14,20 @@ defmodule JellyShot.Watcher do
 
   def start_link(options) do
     only = Macro.expand(options, __ENV__)[:only]
+    name = to_string(options[:module]) <> ".Watcher" |> String.to_atom
 
     if !only && Mix.env == :dev || only == Mix.env do
-      GenServer.start_link(__MODULE__, options)
+      GenServer.start_link(__MODULE__, options, name: name)
     end
   end
 
   def init(options) do
     repo = Macro.expand options, __ENV__
     path = Path.expand repo[:source]
+    name = to_string(options[:module]) <> ".FS" |> String.to_atom
 
-    {:ok, _pid}  = :fs.start_link(:fs_watcher, path)
-    :ok = :fs.subscribe(:fs_watcher)
+    {:ok, _pid}  = :fs.start_link(name, path)
+    :ok = :fs.subscribe(name)
 
     {:ok, {repo, []}}
   end

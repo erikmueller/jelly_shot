@@ -48,6 +48,9 @@
         <li class="nav-list-item nav-list-item-social">
           <a target="_blank" href="http://github.com/erikmueller/">GitHub</a>
         </li>
+        <li class="nav-list-item nav-list-item-social">
+          <a href="/cv">Curriculum Vitae</a>
+        </li>
       </ul>
     </div>
 

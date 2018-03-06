@@ -40,7 +40,7 @@ defmodule JellyShot.Post do
 
   defp into_post(file, meta, html) do
     data = %{
-      file: file,
+      file_name: file,
       slug: file_to_slug(file),
       content: html,
     } |> Map.merge(meta)
