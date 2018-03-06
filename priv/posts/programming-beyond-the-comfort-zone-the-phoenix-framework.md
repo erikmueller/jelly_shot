@@ -17,14 +17,14 @@ I'm sure you'll find hundreds of more sophisticated tutorials out there on the i
 ## Overview
 
 Started by Chris McCord, the [Phoenix Framework](http://www.phoenixframework.org/) released version [1.0](https://github.com/phoenixframework/phoenix/releases/tag/v1.0.0) in August 2015.
-This was one and a half year after the famous *[initial commit](https://github.com/phoenixframework/phoenix/commit/c4ede8c5f71ab74b0c2e9de1eb37d15531d95a46)* we all know {% emoji wink %}.
+This was one and a half year after the famous _[initial commit](https://github.com/phoenixframework/phoenix/commit/c4ede8c5f71ab74b0c2e9de1eb37d15531d95a46)_ we all know {% emoji wink %}.
 Now it's not only used for dynamic websites and applications but especially advertised for real-time WebSocket-based interaction (e.g. chats, games, etc).
 
 Phoenix is heavily relying on three (Elixir and/or Erlang) projects:
 
-1. The HTTP server [Cowboy](https://github.com/ninenines/cowboy)
-2. [Plug](https://github.com/elixir-lang/plug) - a specification for composable modules used in web application
-3. The database wrapper [Ecto](https://github.com/elixir-ecto/ecto) which also provides a DSL for querying.
+1.  The HTTP server [Cowboy](https://github.com/ninenines/cowboy)
+2.  [Plug](https://github.com/elixir-lang/plug) - a specification for composable modules used in web application
+3.  The database wrapper [Ecto](https://github.com/elixir-ecto/ecto) which also provides a DSL for querying.
 
 Since Phoenix is built in a very modular way you can add and remove pretty much any functionality you need.
 Writing a REST API that only provides JSON data?
@@ -34,8 +34,8 @@ This gives you a project structure that fits your needs and doesn't bloat your a
 ## What makes the bird fly
 
 So now that we know what big pieces are used to compose the framework let's see how Phoenix comes from an incoming request to an outgoing response.
-The most important thing to notice is that within the framework (and it's layers) you will always see a *connection* or `conn` being passed around and altered.
-Of course you do not alter the *original* connection but rather use it to construct a new one.
+The most important thing to notice is that within the framework (and it's layers) you will always see a _connection_ or `conn` being passed around and altered.
+Of course you do not alter the _original_ connection but rather use it to construct a new one.
 Remember, we have immutable data!
 
 To give you a more visual impression of the flow I'd like to borrow some thoughts from the excellent ["Programming Phoenix"](https://pragprog.com/book/phoenix/programming-phoenix) book.
@@ -56,14 +56,14 @@ A plug can be anything from a logger to different header definitions or session 
 Right after the endpoint (entrypoint) comes the **Router**.
 Pretty much what you would expect: A layer that knows which request should go where - precisely to which **Controller**.
 The router can specify **Pipelines** which are usually a series of plugs a request should run through on a specific route.
-Think of such a *pipeline* as a stack of middleware with a distinct mount point.
+Think of such a _pipeline_ as a stack of middleware with a distinct mount point.
 This mechanism e.g. lets you set a JSON accept header for all your `/api/*` routes while all view related requests go through some sort of XSRF protection.
 
 Once our request arrived in the controller we might want to do a call to the database using **Ecto** and pass that data to a **Template** to render it.
 Stay with me we're almost there.
 The last piece missing is the **View**.
 Ever needed some logic in your templates?
-Just define everything you need in your corresponding *view* and you can access all functions in your `.eex` template (which stands for embedded elixir and sounds scarier than it is).
+Just define everything you need in your corresponding _view_ and you can access all functions in your `.eex` template (which stands for embedded elixir and sounds scarier than it is).
 We're done.
 We just rendered a template with data from our database model.
 Incidentally, the model is responsible for defining the database scheme and processing data written to the database (by the controller) and retrieved from the database (also issued by the controller).
@@ -88,7 +88,6 @@ $ brew update && \
   docker run -d -p 5432:5432 postgres && \
   mix phoenix.new rest-api --no-html --no-brunch && \
   cd restapi
-
 ```
 
 ### The slightly longer version
@@ -105,6 +104,7 @@ If everything went well you can fire up `iex` (Interactive Elixir) in the termin
 ```sh
 iex(1)> h Map
 ```
+
 Awesome, we have an interactive shell with integrated documentation 👌.
 We have the VM, we have the compiler.
 We need some sort of package manager!
@@ -216,7 +216,6 @@ alias Restapi.Repo
 alias Restapi.Shop
 
 Repo.insert! %Shop{name: "foo"}
-
 ```
 
 The two alias statements let us use `Repo` and `Shop` without prefixing `Restapi`.

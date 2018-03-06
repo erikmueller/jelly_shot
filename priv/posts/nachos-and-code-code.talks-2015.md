@@ -3,13 +3,13 @@ layout: post
 title: "code.talks: code & nachos"
 date: "2015-10-28"
 image: /assets/nature.jpg
-intro: "22 weeks ago we attended the `code.talks` developer conference in Hamburg.
+intro: "Some weeks ago we attended the `code.talks` developer conference in Hamburg.
 Besides the amazing location (which was the Cinemaxx Dammtor) and the awesome catering (as much nachos, popcorn and Mate as you can endure) the conference was also (who would have guessed that) packed with lots of interesting presentations and people."
 categories: ["javascript"]
 authors: ["Erik"]
 ---
 
-3 weeks ago we attended the `code.talks` developer conference in Hamburg.
+Some weeks ago we attended the `code.talks` developer conference in Hamburg.
 Besides the amazing location (which was the Cinemaxx Dammtor) and the awesome catering (as much nachos, popcorn and Mate as you can endure) the conference was also (who would have guessed that) packed with lots of interesting presentations and people.
 
 Listening to the many great presentations we found things that we're already doing right (according to the speakers) but also other aspects we can improve on.
