@@ -13,6 +13,11 @@ config :jelly_shot, JellyShot.Endpoint,
   pubsub: [name: JellyShot.PubSub,
            adapter: Phoenix.PubSub.PG2]
 
+config :jelly_shot, repositories: [
+  [module: JellyShot.PostRepository, source: "priv/posts"],
+  [module: JellyShot.CVRepository, source: "priv/docs"]
+]
+
 # Configures Elixir's Logger
 config :logger, :console,
   format: "$time $metadata[$level] $message\n",
