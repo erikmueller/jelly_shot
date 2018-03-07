@@ -53,12 +53,14 @@ a {
     text-transform: uppercase;
     color: white;
     margin: 0;
+    font-weight: 400;
   }
 
   &-tagline {
     font-size: 1.3em;
     font-weight: 300;
     color: #ef7900;
+    font-variant: small-caps;
   }
 }
 
@@ -71,21 +73,22 @@ a {
     display: inline;
 
     &:not(:first-child):before {
-      content: "\2022";
+      content: "|";
     }
 
     &-category {
       a {
         color: #ccc;
         letter-spacing: 0.05em;
-        text-transform: uppercase;
-        font-size: 85%;
+        font-variant-caps: small-caps;
+        text-transform: capitalize;
+        font-size: 1.1em;
       }
     }
 
     &-social {
       a {
-        color: #888;
+        color: #ccc;
         font-size: 85%;
       }
     }
@@ -102,6 +105,7 @@ a {
   h4 {
     text-align: left;
     line-height: 1.2em;
+    font-weight: 400;
   }
 
   &-sheet {
@@ -176,6 +180,12 @@ a {
 
     &:before {
       content: none !important;
+    }
+
+    &-social {
+      a {
+        color: gray;
+      }
     }
   }
 
