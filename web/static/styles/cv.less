@@ -1,6 +1,8 @@
+@slight-gray: #999;
+
 .cv {
   h1 {
-    color: gray;
+    color: @slight-gray;
     text-align: center;
     font-size: 2em;
     font-weight: 200;
@@ -19,9 +21,18 @@
     }
   }
 
-  th:first-of-type {
-    font-size: 1.2em;
-    padding-right: 1em;
-    color: gray;
+  th {
+    display: none;
+  }
+
+  td {
+    font-weight: 400;
+    vertical-align: baseline;
+
+    &:first-of-type {
+      font-size: 1.1em;
+      padding-right: 1em;
+      color: @slight-gray;
+    }
   }
 }
