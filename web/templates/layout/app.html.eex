@@ -12,6 +12,7 @@
       render(JellyShot.LayoutView, "meta.html", assigns)
     %>
 
+    <script defer src="https://use.fontawesome.com/releases/v5.0.9/js/all.js" integrity="sha384-8iPTk2s/jMVj81dnzb/iFR2sdA7u06vHJyyLlAd4snFpCl/SnyUjRrbdJsw1pGIl" crossorigin="anonymous"></script>
   </head>
 
   <body>
@@ -43,12 +44,15 @@
     <div class="footer">
       <ul class="nav-list">
         <li class="nav-list-item nav-list-item-social">
+          <i class="fab fa-twitter-square"></i>
           <a target="_blank" href="http://twitter.com/air2ick/">Twitter</a>
         </li>
         <li class="nav-list-item nav-list-item-social">
+          <i class="fab fa-github-square"></i>
           <a target="_blank" href="http://github.com/erikmueller/">GitHub</a>
         </li>
         <li class="nav-list-item nav-list-item-social">
+          <i class="fab fa-angellist"></i>
           <a href="/cv">Curriculum Vitae</a>
         </li>
       </ul>
