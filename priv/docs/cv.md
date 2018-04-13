@@ -31,11 +31,12 @@
 | When?        | What                                                                                  |
 | ------------ | ------------------------------------------------------------------------------------- |
 | 2014 – 2018  | **JavaScript Engineer**, ePages GmbH, Hamburg                                         |
+|              | - Part of a cross-functional fullstack team                                           |
 |              | - From scratch rewrite of an ecommerce frontend with `react` & `redux`                |
 |              | - Backend for frontend implementation with `express`, `sequelize` and `TypeScript`    |
-|              | - Testing with `mocha`, `jest` & selenium                                             |
-|              | - `Docker` (compose) & CircleCI for continuous integration & deployment               |
+|              | - Examining applications and conducting technical job interviews                      |
 | 2012 – 2014  | **JavaScript Engineer**, ePages GmbH, Jena                                            |
+|              | - Part of the frontend team                                                           |
 |              | - Working with `jQuery` and the `Dojo` Toolkit as well as `require.js` and `Backbone` |
 |              | - Building a new asset build pipeline with `nodejs` (0.8)                             |
 |              | - Greenfield project based on node.js and `express`                                   |
@@ -65,3 +66,15 @@ I also created <i class="fab fa-github"></i> and contributed <i class="fas fa-co
 * <i class="fab fa-github"></i> [Luke](https://github.com/erikmueller/luke){:target="blank"} (server-side rendered react-router with the cowboy webserver)
 * <i class="fab fa-github"></i> [JellyShot](https://github.com/erikmueller/jelly_shot){:target="blank"} (blog engine based on Phoenix powered by markdown)
 * <i class="fab fa-github"></i> [Edmin](https://github.com/erikmueller/edmin){:target="blank"} (image slider backed by ex_admin CRUD interface)
+
+**HTML & CSS**. Besides effecient JavaScript I consider writing semantically correct markup and stylesheets the bread and butter of sucessful web development.
+
+**MySQL & MongoDB**. Experience with running relational and document-oriented databases in production gives me the proficiency to always chose the best-fitting technology for the task at hand.
+
+## Languages
+
+| Language | Proficiency    |
+| -------- | -------------- |
+| German   | First language |
+| English  | Fluent (C1)    |
+| French   | Basic (3 yrs)  |
