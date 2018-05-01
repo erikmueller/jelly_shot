@@ -71,7 +71,7 @@ I also created <i class="fab fa-github"></i> and contributed <i class="fas fa-co
 
 **MySQL & MongoDB**. Experience with running relational and document-oriented databases in production gives me the proficiency to always chose the best-fitting technology for the task at hand.
 
-## Languages
+## Language skills
 
 | Language | Proficiency                                               |
 | -------- | --------------------------------------------------------- |
