@@ -9,7 +9,7 @@ defmodule JellyShot.PostRepository do
     Agent.start_link(get_initial_state(source), name: __MODULE__)
   end
 
-  def anew(source), do: Agent.update(__MODULE__, get_initial_state(source))
+  def anew(source), do: Agent.update(__MODULE__, fn (_state) -> read_all_posts source end)
 
   def list do
     Agent.get(__MODULE__, fn posts -> {:ok, posts} end)
@@ -62,17 +62,20 @@ defmodule JellyShot.PostRepository do
     end)
   end
 
-  defp get_initial_state(source) do
-    fn ->
-      start = Timex.now()
-
-      posts = File.ls!(source)
+  defp read_all_posts(source) do
+    File.ls!(source)
       |> Enum.map(&(Path.join([source, &1])))
       |> Flow.from_enumerable(max_demand: 1)
       |> Flow.filter_map(&(Path.extname(&1) == ".md"), &Post.transform/1)
       |> Flow.partition
       |> Flow.reduce(fn -> [] end, &valid_into_list/2)
       |> Enum.sort(&sort/2)
+  end
+
+  defp get_initial_state(source) do
+    fn ->
+      start = Timex.now()
+      posts = read_all_posts source
 
       Logger.debug "Compiled #{Enum.count(posts)} posts in #{Timex.diff Timex.now(), start, :milliseconds}ms."
 
