@@ -11,7 +11,7 @@
 | What I think  | [@Air2ick](https://twitter.com/Air2ick)         |
 | E-Mail        | e {dot} mueller {dot} mail {at} gmail {dot} com |
 
-I ❤️ functional, declarative and clean programming and its powerful abstractions like pure functions and immutable data. 
+I ❤️ functional, declarative and clean programming and its powerful abstractions like pure functions and immutable data.
 It makes programs easier to reason about and (imho) introduces less bugs.
 My favourite Tech-Stack consists of a `React` frontend, bundled and transpiled with `webpack` to use the latest ES7 features.
 I also love `node.js` bundled with `TypeScript` (when applicable) for the backend but prefer the `Elixir` environment around the `Phoenix` framework for its more functional nature.
@@ -43,7 +43,7 @@ I also created <i class="fab fa-github"></i> and contributed <i class="fas fa-co
 
 **MySQL & MongoDB**. Experience with running relational and document-oriented databases in production gives me the proficiency to always chose the best-fitting technology for the task at hand.
 
-**Docker & CI**. I use Docker a lot. Be it for easy reproducible deployments or faster development workflows. All my projects build and test on [CircleCI](https://circleci.com/gh/erikmueller)
+**Docker & CI**. I use Docker a lot. Be it for easy reproducible deployments or faster development workflows. All my projects build and test on [CircleCI](https://circleci.com/gh/erikmueller). I also did docker multistage builds in the CI environment as well as bundle optimizations like code and route splitting.
 
 ## Work
 
