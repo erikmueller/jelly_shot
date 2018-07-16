@@ -23,9 +23,9 @@
         </div>
 
         <a href="/">
-          <h1 class="blog-title">jellyshot</h1>
+          <h1 class="blog-title">Slack</h1>
         </a>
-        <h2 class="blog-tagline">hardly static</h2>
+        <h2 class="blog-tagline">overflow</h2>
 
         <nav>
           <ul class="nav-list">
@@ -53,7 +53,7 @@
         </li>
         <li class="nav-list-item nav-list-item-social">
           <i class="fab fa-angellist"></i>
-          <a href="/cv">Curriculum Vitae</a>
+          <a href="/pages/cv">Curriculum Vitae</a>
         </li>
       </ul>
     </div>

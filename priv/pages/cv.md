@@ -7,7 +7,7 @@
 | What?         | Where                                           |
 | ------------- | ----------------------------------------------- |
 | Where I build | [@erikmueller](https://github.com/erikmueller)  |
-| Where I blog  | [@JellyShot](https://jellyshot.herokuapp.com)   |
+| Where I blog  | [@Slackoverflow](https://slackoverflow.me)          |
 | What I think  | [@Air2ick](https://twitter.com/Air2ick)         |
 | E-Mail        | e {dot} mueller {dot} mail {at} gmail {dot} com |
 

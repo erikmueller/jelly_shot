@@ -20,7 +20,7 @@ defmodule JellyShot.Router do
     get "/posts", PostController, :index
     get "/posts/:slug", PostController, :show
 
-    get "/cv", CVController, :show
+    get "/pages/:slug", PageController, :show
   end
 
   # Other scopes may use custom stacks.

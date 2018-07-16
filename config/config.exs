@@ -15,7 +15,7 @@ config :jelly_shot, JellyShot.Endpoint,
 
 config :jelly_shot, repositories: [
   [module: JellyShot.PostRepository, source: "priv/posts"],
-  [module: JellyShot.CVRepository, source: "priv/docs"]
+  [module: JellyShot.PageRepository, source: "priv/pages"]
 ]
 
 # Configures Elixir's Logger
