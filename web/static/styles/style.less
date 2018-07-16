@@ -1,3 +1,13 @@
+/* oxygen-mono-regular - latin */
+@font-face {
+  font-family: 'Oxygen Mono';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Oxygen Mono'), local('OxygenMono-Regular'),
+       url('../fonts/oxygen-mono-v5-latin-regular.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+       url('../fonts/oxygen-mono-v5-latin-regular.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+
 * {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -60,15 +70,19 @@ a {
   &-title {
     text-transform: uppercase;
     color: white;
-    margin: 0;
+    font-size: 2.4em;
+    margin: .1em 0 0 0;
     font-weight: 400;
+    font-family: 'Oxygen Mono'
   }
 
   &-tagline {
-    font-size: 1.3em;
+    margin: 0 0 .5em 0;
+    font-size: 2em;
     font-weight: 300;
     color: #ef7900;
     font-variant: small-caps;
+    font-family: 'Oxygen Mono';
   }
 }
 

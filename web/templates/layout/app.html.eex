@@ -22,9 +22,7 @@
           <img src="<%= static_path(@conn, "/assets/me.jpg") %>" alt="Erik M&uuml;ller"/>
         </div>
 
-        <a href="/">
-          <h1 class="blog-title">Slack</h1>
-        </a>
+        <a href="/"><h1 class="blog-title">slack</h1></a>
         <h2 class="blog-tagline">overflow</h2>
 
         <nav>

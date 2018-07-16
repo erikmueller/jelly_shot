@@ -23,14 +23,15 @@
   },
   "homepage": "https://github.com/erikmueller/jelly_shot#readme",
   "dependencies": {
-    "copy-webpack-plugin": "^4.0.1",
-    "css-loader": "^0.27.3",
-    "extract-text-webpack-plugin": "^2.1.0",
-    "highlight.js": "^9.10.0",
-    "less": "^2.7.2",
-    "less-loader": "^3.0.0",
-    "reveal-md": "^0.1.2",
-    "style-loader": "^0.14.1",
-    "webpack": "^2.2.1"
+    "copy-webpack-plugin": "4.0.1",
+    "css-loader": "0.27.3",
+    "extract-text-webpack-plugin": "2.1.0",
+    "file-loader": "1.1.11",
+    "highlight.js": "9.10.0",
+    "less": "2.7.2",
+    "less-loader": "3.0.0",
+    "reveal-md": "0.1.2",
+    "style-loader": "0.14.1",
+    "webpack": "2.2.1"
   }
 }
