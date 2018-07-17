@@ -1,11 +1,8 @@
 const path = require('path')
-const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
-
-const extractLess = new ExtractTextPlugin({
-  filename: '[name].css',
-  disable: process.env.NODE_ENV === 'development'
-})
 
 module.exports = {
   context: path.resolve(__dirname, './web/static/'),
@@ -15,29 +12,37 @@ module.exports = {
       './styles/style.less',
       './styles/cv.less',
       'highlight.js/styles/obsidian.css'
+    ],
+    'css/vendor': [
+      '@fortawesome/fontawesome-free/less/fontawesome.less',
+      '@fortawesome/fontawesome-free/less/fa-brands.less',
+      '@fortawesome/fontawesome-free/less/fa-solid.less'
     ]
   },
   output: {
     filename: '[name].js',
-    path: path.resolve(__dirname, './priv/static')
+    path: path.resolve(__dirname, './priv/static'),
+    publicPath: '/'
   },
   module: {
     rules: [
       {
         test: /\.(less|css)$/,
-        use: extractLess.extract({
-          use: ['css-loader', 'less-loader'],
-          fallback: 'style-loader'
-        })
+        use: [
+          process.env.NODE_ENV === 'development'
+            ? 'style-loader'
+            : MiniCssExtractPlugin.loader,
+          'css-loader',
+          'less-loader'
+        ]
       },
       {
-        test: /\.(woff(2)?)(\?v=\d+\.\d+\.\d+)?$/,
+        test: /\.(jpe|jpg|woff|woff2|eot|ttf|svg)(\?.*$|$)/,
         use: [
           {
             loader: 'file-loader',
             options: {
-              name: '[name].[ext]',
-              outputPath: 'fonts/'
+              name: 'fonts/[name].[ext]'
             }
           }
         ]
@@ -46,6 +51,16 @@ module.exports = {
   },
   plugins: [
     new CopyWebpackPlugin([{ from: 'assets/**/*.{jpg,png}' }]),
-    extractLess
-  ]
+    new MiniCssExtractPlugin({ fileName: '[name]-[hash].css' })
+  ],
+  optimization: {
+    minimizer: [
+      new UglifyJsPlugin({
+        cache: true,
+        parallel: true,
+        sourceMap: process.env.NODE_ENV === 'development' // set to true if you want JS source maps
+      }),
+      new OptimizeCSSAssetsPlugin({})
+    ]
+  }
 }

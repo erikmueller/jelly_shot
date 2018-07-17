@@ -7,8 +7,8 @@
     "test": "test"
   },
   "scripts": {
-    "webpack": "webpack --watch --progress --colors --hide-modules=true",
-    "heroku-postbuild": "webpack",
+    "webpack": "webpack --watch --progress --mode development",
+    "heroku-postbuild": "webpack --mode production",
     "test": "echo \"Error: no test specified\" && exit 1",
     "presenter": "reveal-md README.md"
   },
@@ -23,15 +23,19 @@
   },
   "homepage": "https://github.com/erikmueller/jelly_shot#readme",
   "dependencies": {
-    "copy-webpack-plugin": "4.0.1",
-    "css-loader": "0.27.3",
-    "extract-text-webpack-plugin": "2.1.0",
+    "@fortawesome/fontawesome-free": "^5.1.0",
+    "copy-webpack-plugin": "4.5.2",
+    "css-loader": "1.0.0",
     "file-loader": "1.1.11",
-    "highlight.js": "9.10.0",
-    "less": "2.7.2",
-    "less-loader": "3.0.0",
-    "reveal-md": "0.1.2",
-    "style-loader": "0.14.1",
-    "webpack": "2.2.1"
+    "highlight.js": "9.12.0",
+    "less": "3.7.1",
+    "less-loader": "4.1.0",
+    "mini-css-extract-plugin": "^0.4.1",
+    "optimize-css-assets-webpack-plugin": "^5.0.0",
+    "reveal-md": "2.0.6",
+    "style-loader": "0.21.0",
+    "uglifyjs-webpack-plugin": "^1.2.7",
+    "webpack": "4.16.1",
+    "webpack-command": "^0.4.1"
   }
 }

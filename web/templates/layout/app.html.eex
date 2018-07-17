@@ -6,13 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/bundle.css") %>">
+    <link rel="stylesheet" href="<%= static_path(@conn, "/css/vendor.css") %>">
 
     <%=
       render_existing(@view_module, "meta." <> @view_template, assigns) ||
       render(JellyShot.LayoutView, "meta.html", assigns)
     %>
-
-    <script defer src="https://use.fontawesome.com/releases/v5.0.9/js/all.js" integrity="sha384-8iPTk2s/jMVj81dnzb/iFR2sdA7u06vHJyyLlAd4snFpCl/SnyUjRrbdJsw1pGIl" crossorigin="anonymous"></script>
   </head>
 
   <body>

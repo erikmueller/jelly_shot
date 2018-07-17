@@ -14,8 +14,6 @@ defmodule JellyShot.PageRepository do
 
   def get_by_file_name(file_name) do
     Agent.get(__MODULE__, fn pages ->
-      IO.inspect(pages)
-      
       case pages[file_name] do
         nil -> :not_found
         page -> {:ok, page}
