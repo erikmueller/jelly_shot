@@ -11,7 +11,7 @@
     %>
 
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/bundle.css") %>">
-    <link rel="stylesheet" href="<%= static_path(@conn, "/css/desktop.css") %>" media="(min-width: 768px)">
+    <link rel="stylesheet" href="<%= static_path(@conn, "/css/desktop.css") %>" media="(min-width: 920px)">
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/print.css") %>" media="print">
   </head>
 
@@ -22,8 +22,8 @@
           <img src="<%= static_path(@conn, "/assets/me.jpg") %>" alt="Erik M&uuml;ller"/>
         </div>
 
-        <a href="/"><h1 class="blog-title">slack</h1></a>
-        <h2 class="blog-tagline">overflow</h2>
+        <a href="/"><h2 class="blog-title">slack</h2></a>
+        <h3 class="blog-tagline">overflow</h3>
 
         <nav>
           <ul class="nav-list">

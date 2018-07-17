@@ -2,6 +2,7 @@
 title: "JavaScript |> Elixir: Programming beyond the comfort zone"
 date: "2017-02-09"
 image: /assets/water.jpg
+image_position: "bottom"
 intro: "I’m a JavaScript Engineer. I write JavaScript. I really like writing JavaScript and I feel very comfortable doing so. In the JavaScript world, there are a gazillion web frameworks available and every week there are more coming. So why should you start programming in another language?"
 categories: ["elixir", "javascript"]
 authors: ["Erik"]
@@ -229,11 +230,11 @@ Accessing `http://localhost/api/shops/foo` again should yield the expected resul
 
 There's a lot to explore from here on and there's (of course) a lot missing in our little example.
 
-* Check `web/views/shop_view.ex` to see which fields fetched from the database and passed by the controller are actually used to render the view (`updated_at` and `inserted_at` are fetched but don't appear in the response, right?)
-* Add some more records in the `seeds.exs` and `GET` them
-* Add a route to list all available shops
-* Create an HTML application instead of a REST API
-* ...
+- Check `web/views/shop_view.ex` to see which fields fetched from the database and passed by the controller are actually used to render the view (`updated_at` and `inserted_at` are fetched but don't appear in the response, right?)
+- Add some more records in the `seeds.exs` and `GET` them
+- Add a route to list all available shops
+- Create an HTML application instead of a REST API
+- ...
 
 This being probably the smallest and least comprehensive tutorial ever, I encourage you to check the awesome [Phoenix Guides](http://www.phoenixframework.org/docs/overview) which will teach you about everything covered here, and more, in much more depth.
 I hope these posts made you curious and showed you some things beyond the JavaScript world.

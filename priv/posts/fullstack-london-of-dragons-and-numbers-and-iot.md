@@ -2,6 +2,7 @@
 title: "Fullstack London - Of dragons, numbers and IoT"
 date: 2017-07-20
 image: /assets/dragon.jpg
+image_position: "top left"
 intro: "After one year of abscence I was attending Fullstack London again. The past years were well-organized, fun, and had an awesome speaker deck on top of that. This year was no difference. Here are some things I took away from these awesome three days."
 categories: ["javascript"]
 authors: ["Erik"]
@@ -100,11 +101,11 @@ Checkout how to help the [Kingdom of Mugloar](http://dragonsofmugloar.com){:targ
 The one & only [Tomasz Ducin](https://twitter.com/tomasz_ducin){:target="\_blank"} had the slot for the last talk of the day before the workshops began.
 And here I thought I knew about async programming in JavaScript!
 
-* Callbacks? Sure, I heard there even was a hell for them.
-* Promises? Doing that all day.
-* Reactive streams? Recently tried some in Elixir.
-* Generators? Yeah, heard they exist.
-* Async/Await? Was experimenting with that.
+- Callbacks? Sure, I heard there even was a hell for them.
+- Promises? Doing that all day.
+- Reactive streams? Recently tried some in Elixir.
+- Generators? Yeah, heard they exist.
+- Async/Await? Was experimenting with that.
 
 What about croutines?
 Co-What?

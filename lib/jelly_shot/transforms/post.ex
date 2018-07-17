@@ -1,7 +1,7 @@
 require Logger
 
 defmodule JellyShot.Post do
-  defstruct file_name: "", slug: "", authors: [], title: "", date: "", intro: "", categories: [], image: "", content: ""
+  defstruct file_name: "", slug: "", authors: [], title: "", date: "", intro: "", categories: [], image: "", image_position: "center", content: ""
 
   def transform(file) do
     case do_transform(file) do

@@ -1,11 +1,9 @@
-<%= if @post.image do %>
-  <div class="post-header-image-container">
-    <img class="post-header-image" src="<%= @post.image %>" alt="<%= @post.title %>"/>
-  </div>
-<% end %>
-
 <div class="content">
   <div class="content-sheet">
+    <%= if @post.image do %>
+      <div class="post-header-image-container" style="background: url('<%= @post.image %>') <%= @post.image_position %>"></div>
+    <% end %>
+
     <h1><%= @post.title %></h1>
 
     <article><%= raw @post.content %></article>
