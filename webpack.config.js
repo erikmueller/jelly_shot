@@ -3,6 +3,7 @@ const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
+const BrotliPlugin = require('brotli-webpack-plugin')
 
 module.exports = {
   context: path.resolve(__dirname, './web/static/'),
@@ -50,7 +51,8 @@ module.exports = {
   },
   plugins: [
     new CopyWebpackPlugin([{ from: 'assets/**/*.{jpg,png}' }]),
-    new MiniCssExtractPlugin({ fileName: '[name]-[hash].css' })
+    new MiniCssExtractPlugin({ fileName: '[name]-[hash].css' }),
+    new BrotliPlugin()
   ],
   optimization: {
     minimizer: [
