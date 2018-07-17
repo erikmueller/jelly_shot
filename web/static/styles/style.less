@@ -1,7 +1,35 @@
-pre {
-  font-family: 'Monaco', monospace;
-  line-height: 1.3em;
-  font-size: 1.2em;
+@font-face {
+  font-family: 'Raleway';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Raleway'), local('Raleway-Regular'),
+       url('../fonts/raleway-v12-latin-regular.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+       url('../fonts/raleway-v12-latin-regular.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Helvetica, sans-serif;
+  color: #444;
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+  color: #ef7900;
+
+  &:hover, &:focus {
+    text-decoration: none;
+  }
+}
+
+pre, code {
+  font-family: "Fira Code", "Monaco", "Consolas", "Lucida Console", monospace;
 }
 
 code.inline {
@@ -17,11 +45,13 @@ code.inline {
   top: auto;
   padding: 1em 0;
   margin: 0;
+  min-height:140px;
 }
 
 .sidebar {
   background: #444;
   color: #fff;
+  font-family: "Raleway";
 }
 
 .blog {
@@ -29,7 +59,7 @@ code.inline {
     float: left;
 
     & img {
-      height: 120px;
+      height: 124px;
       margin-left: 1em;
     }
   }
@@ -38,18 +68,15 @@ code.inline {
     text-transform: uppercase;
     color: white;
     font-size: 2.4em;
-    margin: .1em 0 0 0;
-    font-weight: 400;
-    font-family: 'Oxygen Mono'
+    margin: 0;
   }
 
   &-tagline {
-    margin: 0 0 .5em 0;
+    margin: 0 0 1em 0;
+    line-height: .3em;
     font-size: 2em;
-    font-weight: 300;
     color: #ef7900;
     font-variant: small-caps;
-    font-family: 'Oxygen Mono';
   }
 }
 
@@ -88,6 +115,7 @@ code.inline {
 .content {
   padding: 1em 1em 0;
   text-align: justify;
+  line-height: 1.7em;
 
   h1,
   h2,
