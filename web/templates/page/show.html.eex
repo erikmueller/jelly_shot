@@ -1,5 +1,5 @@
 <div class="content">
-  <div class="content-sheet cv">
+  <div class="content-sheet <%= @name %>">
     <article><%= raw @page %></article>
   </div>
 </div>

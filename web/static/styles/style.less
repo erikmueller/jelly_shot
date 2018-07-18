@@ -1,3 +1,10 @@
+@orange: #ef7900;
+@lightgray: #ccc;
+@gray: #444;
+
+@elixir: #745882;
+@javascript: #f0db4f;
+
 @font-face {
   font-family: 'Raleway';
   font-style: normal;
@@ -23,7 +30,7 @@ body {
 
 a {
   text-decoration: none;
-  color: #ef7900;
+  color: @orange;
 
   &:hover, &:focus {
     text-decoration: none;
@@ -43,6 +50,19 @@ code.inline {
   border-radius: 0.2em;
 }
 
+address {
+  font-style: normal;
+  padding-left: .6em;
+  border-left: 5px solid @orange;
+}
+
+.baffle {
+  unicode-bidi: bidi-override;
+  direction: rtl;
+
+  > i { display: none; }
+}
+
 .header {
   text-align: center;
   top: auto;
@@ -52,8 +72,8 @@ code.inline {
 }
 
 .sidebar {
-  background: #444;
-  color: #fff;
+  background: @gray;
+  color: white;
   font-family: "Raleway", Helvetica, sans-serif;
 }
 
@@ -78,7 +98,7 @@ code.inline {
     margin: 0 0 1em 0;
     line-height: .3em;
     font-size: 2em;
-    color: #ef7900;
+    color: @orange;
     font-variant: small-caps;
   }
 }
@@ -98,7 +118,7 @@ code.inline {
 
     &-category {
       a {
-        color: #ccc;
+        color: @lightgray;
         letter-spacing: 0.05em;
         font-variant-caps: small-caps;
         text-transform: capitalize;
@@ -106,9 +126,13 @@ code.inline {
       }
     }
 
-    &-social {
+    &-footer {
+      i.fa-gavel {
+        font-size: .9em;
+      }
+
       a {
-        color: #ccc;
+        color: @lightgray;
         font-size: 85%;
       }
     }
@@ -143,6 +167,10 @@ code.inline {
     font-weight: 500;
     letter-spacing: 0.1em;
   }
+
+  .legal {
+    text-align: left;
+  }
 }
 
 .post {
@@ -168,18 +196,18 @@ code.inline {
   &-category {
     margin: 0 0.1em;
     padding: 0.3em 1em;
-    color: #fff;
+    color: white;
     background: #999;
     font-size: 80%;
     border-radius: 3px;
 
     &-elixir {
-      background: #745882;
+      background: @elixir;
     }
 
     &-javascript {
       color: #333;
-      background: #f0db4f;
+      background: @javascript;
     }
   }
 }
@@ -188,6 +216,6 @@ code.inline {
   padding: 1em 0;
   margin: 0;
   text-align: center;
-  background: #444;
-  color: #fff;
+  background: @gray;
+  color: white;
 }

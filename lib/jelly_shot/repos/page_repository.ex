@@ -22,10 +22,10 @@ defmodule JellyShot.PageRepository do
   end
 
   def upsert_by_file_name(file_name) do
-    Agent.update(__MODULE__, fn _  ->
+    Agent.update(__MODULE__, fn pages  ->
       {:ok, page} = file_name |> Path.relative_to_cwd |> Page.transform
 
-      page
+      Map.merge(pages, page)
     end)
   end
 
