@@ -15,7 +15,7 @@ config :jelly_shot, JellyShot.Endpoint,
   http: [port: {:system, "PORT"}, compress: true],
   url: [scheme: "https", host: "www.slackoverflow.me", port: 443],
   force_ssl: [rewrite_on: [:x_forwarded_proto]],
-  cache_static_manifest: "priv/static/manifest.json"
+  cache_static_manifest: "priv/static/cache_manifest.json"
 
 # Do not print debug messages in production
 config :logger, level: :info
