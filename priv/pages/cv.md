@@ -4,12 +4,12 @@
 
 ## Personal data
 
-| What?         | Where                                           |
-| ------------- | ----------------------------------------------- |
-| Where I build | [@erikmueller](https://github.com/erikmueller)  |
-| Where I blog  | [@Slackoverflow](https://slackoverflow.me)          |
-| What I think  | [@Air2ick](https://twitter.com/Air2ick)         |
-| E-Mail        | e {dot} mueller {dot} mail {at} gmail {dot} com |
+| What?         | Where                                                                                  |
+| ------------- | -------------------------------------------------------------------------------------- |
+| Where I build | [@erikmueller](https://github.com/erikmueller)                                         |
+| Where I blog  | [@slackoverflow](https://slackoverflow.me)                                             |
+| What I think  | [@Air2ick](https://twitter.com/Air2ick)                                                |
+| E-Mail        | <span class="baffle">moc {tod} lia<i>llun</i>mg {ta} liam {tod} relleum {tod} e</span> |
 
 I ❤️ functional, declarative and clean programming and its powerful abstractions like pure functions and immutable data.
 It makes programs easier to reason about and (imho) introduces less bugs.
@@ -20,24 +20,24 @@ I also love `node.js` bundled with `TypeScript` (when applicable) for the backen
 
 **JavaScript** with 6 years professional experience in extending existing architectures as well as conceptualizing new projects. Besides working with ES6 and ES7 language features I utilised popular frameworks and libraries in production such as:
 
-* React, redux and react-router on client and server (universal)
-* Two popular node.js web frameworks: Express and hapi
-* ORM/ODM wrappers for mongodb (mongoose) and mysql (sequelize)
-* Build tools and transpilers: Webpack, babel and TypeScript (in conjuction)
-* Several test runners and assertion libraries (jest, unexpected, karma, mocha, selenium)
+- React, redux and react-router on client and server (universal)
+- Two popular node.js web frameworks: Express and hapi
+- ORM/ODM wrappers for mongodb (mongoose) and mysql (sequelize)
+- Build tools and transpilers: Webpack, babel and TypeScript (in conjuction)
+- Several test runners and assertion libraries (jest, unexpected, karma, mocha, selenium)
 
 I also created <i class="fab fa-github"></i> and contributed <i class="fas fa-code-branch"></i> to several open source projects including:
 
-* <i class="fas fa-code-branch"></i> [eslint](https://github.com/eslint/eslint){:target="blank"} (pluggable tool for identifying and reporting on patterns in JavaScript)
-* <i class="fas fa-code-branch"></i> [react-stdio](https://github.com/mjackson/react-stdio){:target="blank"} (render React.js components on any backend)
-* <i class="fab fa-github"></i> [unexpected-immutable](https://github.com/erikmueller/unexpected-immutable){:target="blank"} (immutable.js assertions for unexpected.js)
-* <i class="fab fa-github"></i> [an-old-hype](https://github.com/erikmueller/an-old-hype){:target="blank"} (port of an atom syntax theme for hyper)
+- <i class="fas fa-code-branch"></i> [eslint](https://github.com/eslint/eslint){:target="blank"} (pluggable tool for identifying and reporting on patterns in JavaScript)
+- <i class="fas fa-code-branch"></i> [react-stdio](https://github.com/mjackson/react-stdio){:target="blank"} (render React.js components on any backend)
+- <i class="fab fa-github"></i> [unexpected-immutable](https://github.com/erikmueller/unexpected-immutable){:target="blank"} (immutable.js assertions for unexpected.js)
+- <i class="fab fa-github"></i> [an-old-hype](https://github.com/erikmueller/an-old-hype){:target="blank"} (port of an atom syntax theme for hyper)
 
 **Elixir**. Hobby alchemist for 2 years. Although still being a niche language Elixir helped me in becoming a better programmer and made me rethink established object oriented ways of thinking and programming patterns. A lot of the functional paradigms found in Elixir can be applied to the JavaScript language as well. I was part of the Hamburg.ex user group and created several side projects and playgrounds:
 
-* <i class="fab fa-github"></i> [Luke](https://github.com/erikmueller/luke){:target="blank"} (server-side rendered react-router with the cowboy webserver)
-* <i class="fab fa-github"></i> [JellyShot](https://github.com/erikmueller/jelly_shot){:target="blank"} (blog engine based on Phoenix powered by markdown)
-* <i class="fab fa-github"></i> [Edmin](https://github.com/erikmueller/edmin){:target="blank"} (image slider backed by ex_admin CRUD interface)
+- <i class="fab fa-github"></i> [Luke](https://github.com/erikmueller/luke){:target="blank"} (server-side rendered react-router with the cowboy webserver)
+- <i class="fab fa-github"></i> [JellyShot](https://github.com/erikmueller/jelly_shot){:target="blank"} (blog engine based on Phoenix powered by markdown)
+- <i class="fab fa-github"></i> [Edmin](https://github.com/erikmueller/edmin){:target="blank"} (image slider backed by ex_admin CRUD interface)
 
 **HTML & CSS**. Besides efficient JavaScript I consider writing semantically correct markup and stylesheets the bread and butter of successful web development.
 
@@ -88,6 +88,6 @@ I also created <i class="fab fa-github"></i> and contributed <i class="fas fa-co
 
 ## Hobbies
 
-* Sports (volleyball, cycling, snowboarding)
-* IoT and the like (several raspberry projects involving soldering stuff)
-* Music festivals and concerts
+- Sports (volleyball, cycling, snowboarding)
+- IoT and the like (several raspberry projects involving soldering stuff)
+- Music festivals and concerts
