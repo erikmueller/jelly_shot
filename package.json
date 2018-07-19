@@ -8,7 +8,7 @@
   },
   "scripts": {
     "webpack": "webpack --watch --progress --mode development",
-    "heroku-postbuild": "webpack --mode=production --log-level=debug && yarn --production",
+    "heroku-postbuild": "./node_modules/mozjpeg/vendor/cjpeg web/static/assets/me.jpg && webpack --mode=production --log-level=debug && yarn --production",
     "test": "echo \"Error: no test specified\" && exit 1",
     "presenter": "reveal-md README.md"
   },
