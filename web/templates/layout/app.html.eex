@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <link rel="preload" href="<%= static_path(@conn, "/css/vendor.css") %>" as="style" onload="this.rel='stylesheet'">
+    <link rel="prefetch" href="<%= static_path(@conn, "/js/bundle.js") %>" type="script">
+
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -10,9 +13,25 @@
       render(JellyShot.LayoutView, "meta.html", assigns)
     %>
 
-    <link rel="stylesheet" href="<%= static_path(@conn, "/css/bundle.css") %>">
-    <link rel="stylesheet" href="<%= static_path(@conn, "/css/desktop.css") %>" media="(min-width: 920px)">
-    <link rel="stylesheet" href="<%= static_path(@conn, "/css/print.css") %>" media="print">
+    <link rel="stylesheet" href="<%= static_path(@conn, "/css/style.css") %>">
+
+    <style>
+      /* critical desktop overwrites */
+      @media (min-width: 920px) {
+        .nav-list-item { display: block; line-height: 1.5em; }
+        .nav-list-item:before { content: none !important; }
+        .nav-list-item-footer a { color: gray; }
+        .blog-avatar { float: none; margin: 0 0 1em 0; }
+        .blog-avatar img { height: 180px; border-radius: 50px 0 0 50px; }
+        .content { margin-left: 15em; }
+        .content-sheet { padding: 3em; max-width: 1024px; }
+        .header { margin: 12em 1em 0; text-align: right; }
+        .sidebar { position: fixed; top: 0; bottom: 0; width: 212px; }
+        .footer { background: none; text-align: left; margin-left: 12em; padding-left: 5em; }
+      }
+    </style>
+
+    <script defer src="<%= static_path(@conn, "/js/bundle.js") %>"></script>
   </head>
 
   <body>
@@ -59,10 +78,5 @@
         </li>
       </ul>
     </div>
-
-    <script src="<%= static_path(@conn, "/js/bundle.js") %>"></script>
-    <script type="text/javascript">
-      document.querySelector('head').insertAdjacentHTML('beforeend', '<link rel="stylesheet" href="<%= static_path(@conn, "/css/vendor.css") %>" />')
-    </script>
   </body>
 </html>

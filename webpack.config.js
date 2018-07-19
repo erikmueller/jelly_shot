@@ -4,14 +4,15 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const BrotliPlugin = require('brotli-webpack-plugin')
+const ImageminPlugin = require('imagemin-webpack-plugin').default
+const glob = require('glob')
+const mozJPEG = require('imagemin-mozjpeg')
 
 module.exports = {
   context: path.resolve(__dirname, './web/static/'),
   entry: {
     'js/bundle': './js/app.js',
-    'css/bundle': ['./styles/style.less', './styles/cv.less'],
-    'css/desktop': './styles/desktop.less',
-    'css/print': './styles/print.less',
+    'css/style': './styles/style.less',
     'css/vendor': [
       '@fortawesome/fontawesome-free/less/fontawesome.less',
       '@fortawesome/fontawesome-free/less/fa-brands.less',
@@ -37,7 +38,7 @@ module.exports = {
         ]
       },
       {
-        test: /\.(jpe|jpg|woff|woff2|eot|ttf|svg)(\?.*$|$)/,
+        test: /\.(woff|woff2|eot|ttf|svg)(\?.*$|$)/,
         use: [
           {
             loader: 'file-loader',
@@ -50,7 +51,19 @@ module.exports = {
     ]
   },
   plugins: [
-    new CopyWebpackPlugin([{ from: 'assets/**/*.{jpg,png}' }]),
+    new ImageminPlugin({
+      externalImages: {
+        context: '.',
+        sources: glob.sync('web/static/assets/*.jpg'),
+        destination: 'priv/static'
+      },
+      plugins: [
+        mozJPEG({
+          quality: 75,
+          progressive: true
+        })
+      ]
+    }),
     new MiniCssExtractPlugin({ fileName: '[name]-[hash].css' }),
     new BrotliPlugin()
   ],

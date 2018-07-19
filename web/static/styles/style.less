@@ -9,6 +9,7 @@
   font-family: 'Raleway';
   font-style: normal;
   font-weight: 400;
+  font-display: fallback;
   src: local('Raleway'), local('Raleway-Regular'),
        url('../fonts/raleway-v12-latin-regular.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
        url('../fonts/raleway-v12-latin-regular.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
@@ -21,7 +22,7 @@
 }
 
 body {
-  font-family: '-apple-system','BlinkMacSystemFont', Helvetica, sans-serif;
+  font-family: '-apple-system','BlinkMacSystemFont', Helvetica, Arial, sans-serif;
   -moz-osx-font-smoothing: antialiased;
   -webkit-font-smoothing: antialiased;
   color: #222;
@@ -74,7 +75,7 @@ address {
 .sidebar {
   background: @gray;
   color: white;
-  font-family: "Raleway", Helvetica, sans-serif;
+  font-family: "Raleway", Helvetica, Arial, sans-serif;
 }
 
 .blog {
@@ -166,10 +167,6 @@ address {
     font-size: 80%;
     font-weight: 500;
     letter-spacing: 0.1em;
-  }
-
-  .legal {
-    text-align: left;
   }
 }
 

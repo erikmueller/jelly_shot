@@ -1,3 +1,33 @@
+<style>
+  .cv h1 {
+    color: #999;
+    text-align: center;
+    font-size: 2em;
+    font-weight: 200;
+  }
+  .cv h2 { color: #397249; }
+  .cv h2:before {
+    content: '';
+    display: inline-block;
+    margin-right: 8px;
+    width: 100px;
+    height: 10px;
+    background-color: #9cb770;
+  }
+  .cv table th { display: none; }
+  .cv table td {
+    min-width: 106px;
+    font-weight: 400;
+    vertical-align: baseline;
+    line-height: 2em;
+  }
+  .cv table td:first-of-type { padding-right: 1em; color: #999; }
+
+  .content .legal { text-align: left; }
+
+  @media print { .sidebar, .footer { display: none; } }
+</style>
+
 <div class="content">
   <div class="content-sheet <%= @name %>">
     <article><%= raw @page %></article>
