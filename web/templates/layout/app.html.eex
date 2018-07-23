@@ -78,5 +78,10 @@
         </li>
       </ul>
     </div>
+
+    <script>
+      // Firefox doesn't seem to support the `onload` event on `link`
+      document.querySelector('head').insertAdjacentHTML('beforeend', '<link rel="stylesheet" href="<%= static_path(@conn, "/css/vendor.css") %>">')
+    </script>
   </body>
 </html>
