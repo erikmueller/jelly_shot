@@ -52,6 +52,8 @@ defmodule JellyShot.Mixfile do
      {:yaml_front_matter, "~> 0.2.0"},
      {:flow, "~> 0.11"},
      {:fs, "~> 2.12", override: true},
-     {:excoveralls, "~> 0.8"}]
+     {:excoveralls, "~> 0.8"},
+     {:credo, "~> 1.0.0", only: [:dev, :test], runtime: false}
+    ]
    end
 end

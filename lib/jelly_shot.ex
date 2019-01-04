@@ -1,3 +1,7 @@
+@moduledoc """
+This is the main JellyShot application.
+"""
+
 defmodule JellyShot do
   use Application
 

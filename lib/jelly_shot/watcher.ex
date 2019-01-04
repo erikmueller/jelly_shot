@@ -6,7 +6,7 @@ defmodule JellyShot.Watcher do
   defmacro __using__(options) do
     quote bind_quoted: [options: options] do
       case JellyShot.Watcher.start_link(options) do
-        {:ok, _pid} -> Logger.debug "Watching #{options[:source]} for #{options[:module]}"
+        {:ok, _pid} -> Logger.debug fn -> "Watching #{options[:source]} for #{options[:module]}" end
         _ -> nil
       end
     end

@@ -45,8 +45,8 @@ defmodule JellyShot.PostRepository do
           Logger.info "Updated #{file_name} in #{Timex.diff Timex.now(), start, :milliseconds}ms."
 
           case Enum.find_index(posts, &(Path.relative_to_cwd(&1.file_name) == Path.relative_to_cwd(file_name))) do
-            nil -> List.insert_at(posts, 0, new_post) |> Enum.sort(&sort/2)
-            idx -> List.replace_at(posts, idx, new_post)
+            nil -> posts |> List.insert_at(0, new_post) |> Enum.sort(&sort/2)
+            idx -> posts |> List.replace_at(idx, new_post)
           end
         end)
       {:error, _} -> :ignored
@@ -63,7 +63,8 @@ defmodule JellyShot.PostRepository do
   end
 
   defp read_all_posts(source) do
-    File.ls!(source)
+    source
+      |> File.ls!
       |> Enum.map(&(Path.join([source, &1])))
       |> Flow.from_enumerable(max_demand: 1)
       |> Flow.filter_map(&(Path.extname(&1) == ".md"), &Post.transform/1)
@@ -77,7 +78,7 @@ defmodule JellyShot.PostRepository do
       start = Timex.now()
       posts = read_all_posts source
 
-      Logger.debug "Compiled #{Enum.count(posts)} posts in #{Timex.diff Timex.now(), start, :milliseconds}ms."
+      Logger.debug fn -> "Compiled #{Enum.count(posts)} posts in #{Timex.diff Timex.now(), start, :milliseconds}ms." end
 
       posts
     end
