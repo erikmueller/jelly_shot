@@ -1,14 +1,4 @@
----
-title: Jelly Shot
-separator: <!--s-->
-verticalSeparator: <!--v-->
-theme: black
-revealOptions:
-    controls: false
-    transition: 'slide'
----
-
-![CircleCI](https://circleci.com/gh/erikmueller/jelly_shot/tree/master.svg?style=svg)  <!-- .element style="border: none; background: none;" --> ![codecov](https://codecov.io/gh/erikmueller/jelly_shot/branch/master/graph/badge.svg) <!-- .element style="border: none; background: none;" -->
+![CircleCI](https://circleci.com/gh/ringmaster/jelly_shot/tree/master.svg?style=svg)  <!-- .element style="border: none; background: none;" --> ![codecov](https://codecov.io/gh/ringmaster/jelly_shot/branch/master/graph/badge.svg) <!-- .element style="border: none; background: none;" -->
 
 # Jelly Shot
 
@@ -168,8 +158,5 @@ We might hit a cap at some point <!-- .element: class="fragment" -->
 
 # Thanks
 
-[https://github.com/erikmueller/jelly_shot](https://github.com/erikmueller/jelly_shot)
-
-<style>
-  .reveal code {font-family: hasklig, monospace}
-</style>
+[https://github.com/ringmaster/jelly_shot](https://github.com/ringmaster/jelly_shot)
+Forked from: [https://github.com/erikmueller/jelly_shot](https://github.com/erikmueller/jelly_shot)
