@@ -37,7 +37,8 @@ defmodule JellyShot.PageRepository do
         |> File.ls!
         |> Enum.map(&(Path.join([source, &1])))
         |> Flow.from_enumerable(max_demand: 1)
-        |> Flow.filter_map(&(Path.extname(&1) == ".md"), &Page.transform/1)
+        |> Flow.filter(&(Path.extname(&1) == ".md"))
+        |> Flow.map(&Page.transform/1)
         |> Flow.partition
         |> Enum.reduce(%{}, fn ({:ok, item}, acc) -> Map.merge(acc, item) end)
 

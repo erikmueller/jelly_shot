@@ -27,7 +27,7 @@ defmodule JellyShot.Post do
 
   defp parse_yaml_frontmatter(file) do
     case YamlFrontMatter.parse_file(file) do
-      {:ok, matter, body} ->
+      {:ok, {:ok, matter}, body} ->
         {:ok, Map.new(matter, fn {k, v} -> {String.to_atom(k), v} end), body}
       {:error, reason} ->
         {:error, reason}

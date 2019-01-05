@@ -67,7 +67,8 @@ defmodule JellyShot.PostRepository do
       |> File.ls!
       |> Enum.map(&(Path.join([source, &1])))
       |> Flow.from_enumerable(max_demand: 1)
-      |> Flow.filter_map(&(Path.extname(&1) == ".md"), &Post.transform/1)
+      |> Flow.filter(&(Path.extname(&1) == ".md"))
+      |> Flow.map(&Post.transform/1)
       |> Flow.partition
       |> Flow.reduce(fn -> [] end, &valid_into_list/2)
       |> Enum.sort(&sort/2)

@@ -1,9 +1,9 @@
-@moduledoc """
-This is the main JellyShot application.
-"""
-
 defmodule JellyShot do
   use Application
+
+  @moduledoc """
+  This is the main JellyShot application.
+  """
 
   # See http://elixir-lang.org/docs/stable/elixir/Application.html
   # for more information on OTP Applications
