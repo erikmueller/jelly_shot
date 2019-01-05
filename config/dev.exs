@@ -13,11 +13,11 @@ config :jelly_shot, JellyShot.Endpoint,
   check_origin: false,
   watchers: [
     node: [
-      "../node_modules/webpack/bin/webpackzz.js",
+      Path.expand("../node_modules/webpack/bin/webpack.js", __DIR__),
       "--mode",
       "development",
       "--watch-stdin",
-      cd: Path.expand("../web/static", __DIR__)
+      cd: Path.expand("../", __DIR__)
     ]
   ]
 

@@ -14,14 +14,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/erikmueller/jelly_shot.git"
+    "url": "git+https://github.com/ringmaster/jelly_shot.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/erikmueller/jelly_shot/issues"
+    "url": "https://github.com/ringmaster/jelly_shot/issues"
   },
-  "homepage": "https://github.com/erikmueller/jelly_shot#readme",
+  "homepage": "https://github.com/ringmaster/jelly_shot#readme",
   "devDependencies": {
     "@fortawesome/fontawesome-free": "5.1.0",
     "brotli-webpack-plugin": "1.0.0",
@@ -44,7 +44,6 @@
     "uglifyjs-webpack-plugin": "1.2.7",
     "url-loader": "^1.0.1",
     "webpack": "4.16.1",
-    "webpack-cli": "^3.1.2",
-    "webpack-command": "0.4.1"
+    "webpack-cli": "^3.1.2"
   }
 }
