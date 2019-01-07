@@ -1,4 +1,5 @@
 require Logger
+require IEx
 
 alias JellyShot.Post
 
@@ -6,34 +7,69 @@ defmodule JellyShot.PostRepository do
   def start_link(source) do
     use JellyShot.Watcher, [module: __MODULE__, source: source]
 
-    Agent.start_link(get_initial_state(source), name: __MODULE__)
+    :ets.new(:posts, [:ordered_set, :protected, :named_table])
+    :ets.new(:categories, [:bag, :protected, :named_table])
+    :ets.new(:authors, [:bag, :protected, :named_table])
+
+    source
+      |> get_initial_state
+      |> Enum.each(fn(item) ->
+        :ets.insert(:posts, {{item.date, item.slug}, item})
+        item.categories
+        |> Enum.each(fn(category) ->
+          :ets.insert(:categories, {category, {item.date, item.slug}})
+        end)
+        item.authors
+        |> Enum.each(fn(author) ->
+          :ets.insert(:authors, {author, {item.date, item.slug}})
+        end)
+      end)
+
+    Agent.start_link(fn -> "table" end, name: __MODULE__)
   end
 
   def anew(source), do: Agent.update(__MODULE__, fn (_state) -> read_all_posts source end)
 
   def list do
-    Agent.get(__MODULE__, fn posts -> {:ok, posts} end)
+    :ets.match(:posts, {:_, :"$1"})
+      |> List.flatten
+      |> (fn(a) -> {:ok, a} end).()
+  end
+
+  def categories do
+    :ets.match(:categories, {:"$1", :_})
+      |> List.flatten
+      |> Enum.reduce(%{}, fn(item, acc) ->
+        Map.update(acc, item, 1, fn(x) -> x + 1 end)
+      end)
+      |> (fn(a) -> {:ok, a} end).()
   end
 
   def get_by_slug(slug) do
-    Agent.get(__MODULE__, fn posts ->
-      case Enum.find(posts, &(URI.decode(&1.slug) == slug)) do
-        nil -> :not_found
-        post -> {:ok, post}
-      end
-    end)
+    case :ets.match(:posts, {{:_, slug}, :"$1"}) |> List.flatten do
+      [post | _] -> {:ok, post}
+      _ -> :not_found
+    end
   end
 
   def get_by_category(category) do
-    Agent.get(__MODULE__, fn posts ->
-      {:ok, Enum.filter(posts, &(Enum.member?(&1.categories, category)))}
-    end)
+    :ets.match(:categories, {category, :"$1"})
+      |> List.flatten
+      |> Enum.map(fn(dateslug) ->
+        [{_, post} | _] = :ets.lookup(:posts, dateslug) |> List.flatten
+        post
+      end)
+      |> (fn(a) -> {:ok, a} end).()
   end
 
   def get_by_author(author) do
-    Agent.get(__MODULE__, fn posts ->
-      {:ok, Enum.filter(posts, &(Enum.member?(&1.authors, author)))}
-    end)
+    :ets.match(:authors, {author, :"$1"})
+      |> List.flatten
+      |> Enum.map(fn(dateslug) ->
+        [{_, post} | _] = :ets.lookup(:posts, dateslug) |> List.flatten
+        post
+      end)
+      |> (fn(a) -> {:ok, a} end).()
   end
 
   def upsert_by_file_name(file_name) do
@@ -75,14 +111,12 @@ defmodule JellyShot.PostRepository do
   end
 
   defp get_initial_state(source) do
-    fn ->
-      start = Timex.now()
-      posts = read_all_posts source
+    start = Timex.now()
+    posts = read_all_posts source
 
-      Logger.debug fn -> "Compiled #{Enum.count(posts)} posts in #{Timex.diff Timex.now(), start, :milliseconds}ms." end
+    Logger.debug fn -> "Compiled #{Enum.count(posts)} posts in #{Timex.diff Timex.now(), start, :milliseconds}ms." end
 
-      posts
-    end
+    posts
   end
 
   defp valid_into_list(item, acc) do

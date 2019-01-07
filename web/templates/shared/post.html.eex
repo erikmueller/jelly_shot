@@ -10,6 +10,8 @@
         <a href="/posts?author=<%= author %>"><%= author %></a>
       <% end %>
 
+      on <%= Timex.format!(@post.date, "{WDshort}, {Mshort} {D}, {YYYY}") %>
+
       in
       <%= for category <- @post.categories do %>
         <a href="/posts?category=<%= category %>" class="post-category post-category-<%= category %>"><%= category %></a>
