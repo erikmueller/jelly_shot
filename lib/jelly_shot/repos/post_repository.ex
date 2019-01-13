@@ -14,14 +14,15 @@ defmodule JellyShot.PostRepository do
     source
       |> get_initial_state
       |> Enum.each(fn(item) ->
-        :ets.insert(:posts, {{item.date, item.slug}, item})
+        date_slug = {NaiveDateTime.to_erl(item.date), item.slug}
+        :ets.insert(:posts, {date_slug, item})
         item.categories
         |> Enum.each(fn(category) ->
-          :ets.insert(:categories, {category, {item.date, item.slug}})
+          :ets.insert(:categories, {category, date_slug})
         end)
         item.authors
         |> Enum.each(fn(author) ->
-          :ets.insert(:authors, {author, {item.date, item.slug}})
+          :ets.insert(:authors, {author, date_slug})
         end)
       end)
 
@@ -30,9 +31,18 @@ defmodule JellyShot.PostRepository do
 
   def anew(source), do: Agent.update(__MODULE__, fn (_state) -> read_all_posts source end)
 
+  def page({:ok, posts}, page), do: page(posts, page)
+  def page(posts, page) do
+    posts
+    |> Enum.chunk_every(5)
+    |> Enum.at(page, [])
+    |> (fn(a) -> {:ok, a} end).()
+  end
+
   def list do
     :ets.match(:posts, {:_, :"$1"})
       |> List.flatten
+      |> Enum.reverse
       |> (fn(a) -> {:ok, a} end).()
   end
 

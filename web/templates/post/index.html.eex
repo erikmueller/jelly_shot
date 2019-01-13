@@ -1,21 +1,8 @@
-<div class="content">
-  <div class="content-sheet">
+<!-- post/index.html.eex -->
   <%= if Enum.empty? @posts do %>
     <span>Nothing here</span>
   <% else %>
-    <% [pinned_post | recent_posts] = @posts %>
-
-    <div class="posts">
-      <h1 class="content-subhead">pinned post</h1>
-      <%= render JellyShot.SharedView, "post.html", post: pinned_post %>
-    </div>
-
-    <div class="posts">
-      <h1 class="content-subhead"><%= @headline %></h1>
-      <%= for post <- recent_posts do %>
+      <%= for post <- @posts do %>
         <%= render JellyShot.SharedView, "post.html", post: post %>
       <% end %>
-    </div>
-    <% end %>
-  </div>
-</div>
+  <% end %>

@@ -5,13 +5,14 @@ defmodule JellyShot.PostController do
   use JellyShot.Web, :controller
 
   def index(conn, params) do
+    page = Map.get(params, "page", "0") |> String.to_integer
     {tmpl, headline, {:ok, posts}} = case params do
       %{"author" => author} ->
-        {"list", "posts by author",  Repo.get_by_author(author)}
+        {"list", "posts by author",  Repo.get_by_author(author) |> Repo.page(page)}
       %{"category" => category} ->
-        {"list", "posts by category", Repo.get_by_category(category)}
+        {"list", "posts by category", Repo.get_by_category(category) |> Repo.page(page)}
       _ ->
-        {"index", "recent posts", Repo.list()}
+        {"index", "recent posts", Repo.list() |> Repo.page(page)}
     end
 
     render conn, "#{tmpl}.html", headline: headline, posts: posts

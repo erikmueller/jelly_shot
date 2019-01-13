@@ -9,14 +9,16 @@ defmodule JellyShot.Post do
       {:error, reason} ->
         Logger.warn "Failed to compile #{file}, #{reason}"
 
-        {:error, reason}
+        {:ok, struct(Post)}
     end
   end
 
   defp do_transform(file) do
-    with{:ok, matter, body} <- split_frontmatter(file),
-        {:ok, html, _} <- Earmark.as_html(body),
-    do: {:ok, into_post(file, matter, html)}
+    {:ok, matter, body} = split_frontmatter(file)
+    case Earmark.as_html(body, %Earmark.Options{pedantic: false, sanitize: true}) do
+      {:ok, html, _} -> {:ok, into_post(file, matter, html)}
+      {:error, html, _} -> {:ok, into_post(file, matter, html)}
+    end
   end
 
   defp split_frontmatter(file) do

@@ -1,11 +1,28 @@
-<div class="content">
-  <div class="content-sheet">
-    <%= if @post.image do %>
-      <div class="post-header-image-container" style="background: url('<%= @post.image %>') <%= @post.image_position %>"></div>
-    <% end %>
+<!-- show.html.eex -->
 
-    <h1><%= @post.title %></h1>
+<article class="entry">
 
-    <article><%= raw @post.content %></article>
+  <header class="entry-header">
+
+    <h2 class="entry-title"><%= @post.title %></h2>
+
+    <div class="entry-meta">
+      <ul>
+        <li>July 11, 2014</li>
+        <span class="meta-sep">&bull;</span>
+        <li>
+          <a href="#" title="" rel="category tag">Wordpress</a>,
+          <a href="#" title="" rel="category tag">Ghost</a>
+        </li>
+        <span class="meta-sep">&bull;</span>
+        <li><%= for author <- @post.authors do %><%= author %> <% end %></li>
+      </ul>
+    </div>
+
+  </header>
+
+  <div class="entry-content">
+    <%= raw @post.content %>
   </div>
-</div>
+
+</article> <!-- end entry -->
