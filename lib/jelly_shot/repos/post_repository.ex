@@ -14,16 +14,7 @@ defmodule JellyShot.PostRepository do
     source
       |> get_initial_state
       |> Enum.each(fn(item) ->
-        date_slug = {NaiveDateTime.to_erl(item.date), item.slug}
-        :ets.insert(:posts, {date_slug, item})
-        item.categories
-        |> Enum.each(fn(category) ->
-          :ets.insert(:categories, {category, date_slug})
-        end)
-        item.authors
-        |> Enum.each(fn(author) ->
-          :ets.insert(:authors, {author, date_slug})
-        end)
+        upsert_by_post(item)
       end)
 
     Agent.start_link(fn -> "table" end, name: __MODULE__)
@@ -83,20 +74,25 @@ defmodule JellyShot.PostRepository do
   end
 
   def upsert_by_file_name(file_name) do
-    start = Timex.now()
-
     case Post.transform(file_name) do
-      {:ok, new_post} ->
-        Agent.update(__MODULE__, fn posts ->
-          Logger.info "Updated #{file_name} in #{Timex.diff Timex.now(), start, :milliseconds}ms."
-
-          case Enum.find_index(posts, &(Path.relative_to_cwd(&1.file_name) == Path.relative_to_cwd(file_name))) do
-            nil -> posts |> List.insert_at(0, new_post) |> Enum.sort(&sort/2)
-            idx -> posts |> List.replace_at(idx, new_post)
-          end
-        end)
+      {:ok, post} ->
+        upsert_by_post(post)
       {:error, _} -> :ignored
     end
+  end
+
+  def upsert_by_post(post) do
+    date_slug = {NaiveDateTime.to_erl(post.date), post.slug}
+    :ets.insert(:posts, {date_slug, post})
+    post.categories
+      |> Enum.each(fn(category) ->
+        :ets.insert(:categories, {category, date_slug})
+      end)
+    post.authors
+      |> Enum.each(fn(author) ->
+        :ets.insert(:authors, {author, date_slug})
+      end)
+    post
   end
 
   def delete_by_file_name(file_name) do
