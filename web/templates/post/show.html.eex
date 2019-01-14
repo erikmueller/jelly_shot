@@ -1,4 +1,4 @@
-<!-- show.html.eex -->
+<!-- post/show.html.eex -->
 
 <article class="entry">
 
@@ -8,14 +8,19 @@
 
     <div class="entry-meta">
       <ul>
-        <li>July 11, 2014</li>
+        <li><%= Timex.format!(@post.date, "{WDshort}, {Mshort} {D}, {YYYY}") %></li>
         <span class="meta-sep">&bull;</span>
         <li>
-          <a href="#" title="" rel="category tag">Wordpress</a>,
-          <a href="#" title="" rel="category tag">Ghost</a>
+          <%= for category <- @post.categories do %>
+            <a href="/posts?category=<%= category %>" rel="category tag" class="post-category post-category-<%= category %>"><%= category %></a>
+          <% end %>
         </li>
         <span class="meta-sep">&bull;</span>
-        <li><%= for author <- @post.authors do %><%= author %> <% end %></li>
+        <li>
+          <%= for author <- @post.authors do %>
+            <a href="/posts?author=<%= author %>" class="post-author post-author-<%= author %>"><%= author %></a>
+          <% end %>
+        </li>
       </ul>
     </div>
 

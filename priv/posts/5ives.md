@@ -1,7 +1,7 @@
 ---
 title: "5ives"
 date: "2003-12-30"
-categories: []
+categories: ["linklog", "test"]
 authors: ["owen"]
 slug: 5ives
 ---
