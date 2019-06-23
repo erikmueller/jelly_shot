@@ -9,6 +9,7 @@ const glob = require('glob')
 const mozJPEG = require('imagemin-mozjpeg')
 
 module.exports = {
+  mode: 'development',
   context: path.resolve(__dirname, './web/static/'),
   entry: {
     'js/bundle': './js/app.js',
@@ -35,6 +36,14 @@ module.exports = {
             : MiniCssExtractPlugin.loader,
           'css-loader',
           'less-loader'
+        ]
+      },
+      {
+        test: /\.(png|je?pg)$/,
+        use: [
+          {
+            loader: 'file-loader'
+          }
         ]
       },
       {

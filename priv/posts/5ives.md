@@ -1,8 +1,8 @@
 ---
 title: "5ives"
 date: "2003-12-30"
-categories: ["linklog", "test"]
+categories: []
 authors: ["owen"]
 slug: 5ives
 ---
-Merlin's [lists of five things](http://www.5ives.com/).  Mild amusement.
+Merlin's lists of five things.&nbsp; Mild amusement.<a href="http://www.5ives.com/">http://www.5ives.com/</a>

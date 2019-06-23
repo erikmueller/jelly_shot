@@ -5,6 +5,7 @@
   <title>Asymptomatic</title>
   <link rel="preload" href="<%= static_path(@conn, "/css/vendor.css") %>" as="style" onload="this.rel='stylesheet'">
   <link rel="prefetch" href="<%= static_path(@conn, "/js/bundle.js") %>" type="script">
+  <link rel="shortcut icon" type="image/png" href="/assets/favicon.png"/>
 
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -178,14 +179,14 @@
         <h3>Photostream</h3>
 
         <ul class="photostream group">
-          <li><a href="#"><img alt="thumbnail" src="images/thumb.jpg"></a></li>
-          <li><a href="#"><img alt="thumbnail" src="images/thumb.jpg"></a></li>
-          <li><a href="#"><img alt="thumbnail" src="images/thumb.jpg"></a></li>
-          <li><a href="#"><img alt="thumbnail" src="images/thumb.jpg"></a></li>
-          <li><a href="#"><img alt="thumbnail" src="images/thumb.jpg"></a></li>
-          <li><a href="#"><img alt="thumbnail" src="images/thumb.jpg"></a></li>
-          <li><a href="#"><img alt="thumbnail" src="images/thumb.jpg"></a></li>
-          <li><a href="#"><img alt="thumbnail" src="images/thumb.jpg"></a></li>
+          <li><a href="#"><img alt="thumbnail" src="/assets/thumb.jpg"></a></li>
+          <li><a href="#"><img alt="thumbnail" src="/assets/thumb.jpg"></a></li>
+          <li><a href="#"><img alt="thumbnail" src="/assets/thumb.jpg"></a></li>
+          <li><a href="#"><img alt="thumbnail" src="/assets/thumb.jpg"></a></li>
+          <li><a href="#"><img alt="thumbnail" src="/assets/thumb.jpg"></a></li>
+          <li><a href="#"><img alt="thumbnail" src="/assets/thumb.jpg"></a></li>
+          <li><a href="#"><img alt="thumbnail" src="/assets/thumb.jpg"></a></li>
+          <li><a href="#"><img alt="thumbnail" src="/assets/thumb.jpg"></a></li>
         </ul>
 
       </div>

@@ -7,7 +7,7 @@ defmodule JellyShot.Endpoint do
   # when deploying your static files in production.
   plug Plug.Static,
     at: "/", from: :jelly_shot, gzip: true, brotli: true,
-    only: ~w(assets css fonts images js favicon.ico robots.txt)
+    only: ~w(assets css fonts images img js favicon.ico robots.txt)
 
   # Code reloading can be explicitly enabled under the
   # :code_reloader configuration of your endpoint.
