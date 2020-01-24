@@ -3,7 +3,7 @@ jobs:
   build:
     working_directory: /root/jelly_shot
     docker:
-      - image: elixir
+      - image: elixir:1.4.0
     steps:
       - checkout
       - run:
