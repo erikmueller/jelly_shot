@@ -7,146 +7,237 @@ categories: ["elixir"]
 authors: ["Erik"]
 ---
 
-I'm a JavaScript Engineer.
-I write JavaScript.
-I really like writing JavaScript and I feel very comfortable doing so.
-In the JavaScript world, there are a gazillion web frameworks available and every week there are more coming.
-Besides the usual suspects like `express` and `hapi`, there are a lot of things that are fun to play with like zeit's `micro`.
-Although having some different concepts, they all have something in common: They're (of course) JavaScript frameworks.
-Now, if you want to learn more about the HTTP stack or the request and response cycle, you should definitely check out a lot of different frameworks since different concepts give you different insights and perspectives of the inner workings.
+In the [last post](https://developer.epages.com/blog/2017/02/02/programming-beyond-the-comfort-zone-javascript-elixir.html) we checked why you should learn some more languages and why Elixir might help you becoming a better JavaScript developer.
+Now I promised to go deeper into web development (since this is what JS devs do, right?).
+A popular (if not the most popular) web framework for Elixir is [**Phoenix**](http://www.phoenixframework.org/).
+After a short overview and a look at it's core concepts we're going to build a (very) small REST API just to check how to start and how this start looks like.
+I'm sure you'll find hundreds of more sophisticated tutorials out there on the internet if you want to go further.
 
-So why should you start programming in another language?
+## Overview
 
-Let's take a step back from the frameworks and look at the language itself.
-JavaScript claims to be both, object-oriented (with prototypal inheritance) and functional.
-And since it claims to be both, it is neither one nor the other to a satisfying extend.
-Other languages like [Elixir](http://elixir-lang.org/){:target="\_blank"} (which we're going to talk about in a bit) make it much easier to use functional language features and methods such as _destructuring_, _pattern matching_ or _recursion_.
-You might shift from doing everything with a `forEach` loop to solving pretty much every problem with `reduce`.
-This paradigm shift not only broadens your programming knowledge, but lets you view problems (and more importantly their solutions) from a different angle.
-On top of that, it improves code readability - at least most of the time 😉.
+Started by Chris McCord, the [Phoenix Framework](http://www.phoenixframework.org/) released version [1.0](https://github.com/phoenixframework/phoenix/releases/tag/v1.0.0) in August 2015.
+This was one and a half year after the famous _[initial commit](https://github.com/phoenixframework/phoenix/commit/c4ede8c5f71ab74b0c2e9de1eb37d15531d95a46)_.
+Now it's not only used for dynamic websites and applications but especially advertised for real-time WebSocket-based interaction (e.g. chats, games, etc).
 
-Now, what if I told you that you can learn all of this by using a web framework (and language) that is not only fun to work with but also faster and less error prone than all of the before mentioned?
+Phoenix is heavily relying on three (Elixir and/or Erlang) projects:
 
-## Enter: Elixir and Phoenix
+1.  The HTTP server [Cowboy](https://github.com/ninenines/cowboy)
+2.  [Plug](https://github.com/elixir-lang/plug) - a specification for composable modules used in web application
+3.  The database wrapper [Ecto](https://github.com/elixir-ecto/ecto) which also provides a DSL for querying.
 
-This is rather a teaser that should make you curious about trying out something new and leaving your comfort zone, than a full blown tutorial or language reference.
-This first part will take a look at how **Elixir** might help you to rethink programming patterns leading to cleaner code and continue with what this [**Phoenix**](http://www.phoenixframework.org/){:target="\_blank"} thing actually is.
+Since Phoenix is built in a very modular way you can add and remove pretty much any functionality you need.
+Writing a REST API that only provides JSON data?
+Simply remove the template logic and the complete frontend asset pipeline!
+This gives you a project structure that fits your needs and doesn't bloat your application.
 
-### The Platform
+## What makes the bird fly
 
-Before we explore some Elixir code, let's start with a naive JS example of populating an array - mutation style.
+So now that we know what big pieces are used to compose the framework let's see how Phoenix comes from an incoming request to an outgoing response.
+The most important thing to notice is that within the framework (and it's layers) you will always see a _connection_ or `conn` being passed around and altered.
+Of course you do not alter the _original_ connection but rather use it to construct a new one.
+Remember, we have immutable data!
 
-```js
-const myNumbers = [-2, 3, 5, -34, 0, 32]
-const result = []
-
-myNumbers.forEach(num => {
-  if (num > 0) {
-    result.push(num * 2)
-  }
-})
-```
-
-So what do we have here? Side effects and mutation! With each iteration we're changing the `result` array. In this simple case we're pretty sure that we know what it contains after we touched each number. With higher complexity (and nesting) we might be guessing the values rather than knowing them. Furthermore it's not quite obvious at first sight how `result` is populated (because there's no assignment we can see right away).
-
-Of course we can do better:
-
-```js
-const myNumbers = [-2, 3, 5, -34, 0, 32]
-const result = myNumbers.filter(num => num > 0).map(num => num * 2)
-```
-
-This time we see that `result` will contain the double of all positive numbers from the source array.
-Way more explicit, isn't it?
-For the record, this is how the above would look in Elixir:
+To give you a more visual impression of the flow I'd like to borrow some thoughts from the excellent ["Programming Phoenix"](https://pragprog.com/book/phoenix/programming-phoenix) book.
+As mentioned we start with the `connection`.
+In case you forgot, the pipeline operator `|>` takes the left-hand side and passes it as the first argument to the function on the right.
 
 ```elixir
-my_numbers = [-2, 3, 5, -34, 0, 32]
-result = my_numbers
-    |> Enum.filter(fn (num) -> num > 0 end)
-    |> Enum.map(&(&1 * 2))
+Connection
+|> Endpoint
+|> Router
+|> Controller
 ```
 
-This pretty much resembles the JavaScript solution, right?!
-Almost!
-Since Elixir is based on immutable data, you could not have started as shown in the first JavaScript solution.
-You cannot simply mutate a data structure in Elixir!
-What you would have done is to create a new list with every value from the old one that you see fit.
-Besides that, there are some other oddities.
-The `|>` is called a pipe operator and passes the value as the first argument to the next function.
-While we're using the `fn` keyword to define an anonymous function as the `filter` expression and explicitly naming the variable `num`, we're shortening this for the `map` function and just say: "_This function uses the first argument (`&1`) it receives and doubles it_".
+First we hit the **Endpoint**.
+This is the place where, in the Express world, you define your `app()` and `use()` different kinds of middleware layers.
+In Phoenix these layers are specified by different **Plugs**.
+A plug can be anything from a logger to different header definitions or session handling.
+Right after the endpoint (entrypoint) comes the **Router**.
+Pretty much what you would expect: A layer that knows which request should go where - precisely to which **Controller**.
+The router can specify **Pipelines** which are usually a series of plugs a request should run through on a specific route.
+Think of such a _pipeline_ as a stack of middleware with a distinct mount point.
+This mechanism e.g. lets you set a JSON accept header for all your `/api/*` routes while all view related requests go through some sort of XSRF protection.
 
-Let's take the example from above again.
-In contrast to JavaScript, we can use some sugar in Elixir called a `for` comprehension in conjunction with a filter to loop over the enumerable and create a new one (with all values > 0 doubled).
+Once our request arrived in the controller we might want to do a call to the database using **Ecto** and pass that data to a **Template** to render it.
+Stay with me we're almost there.
+The last piece missing is the **View**.
+Ever needed some logic in your templates?
+Just define everything you need in your corresponding _view_ and you can access all functions in your `.eex` template (which stands for embedded elixir and sounds scarier than it is).
+We're done.
+We just rendered a template with data from our database model.
+Incidentally, the model is responsible for defining the database scheme and processing data written to the database (by the controller) and retrieved from the database (also issued by the controller).
+You could say that the model is the only one "allowed" to produce side effects and interact with the "outside" world (in our case the database).
+
+## Foreplay
+
+This was a rough overview of the inner workings of Phoenix.
+I bet you'd like to see that in action and have a look how we could use this to create an actual real world application.
+What would be better than writing a REST API that you can use as a backend for your JavaScript frontend?
+Awesome!
+There are a couple of things we'll need and since I'm a lazy developer I assume you're running Mac OS.
+If not please see the [official Elixir site](http://elixir-lang.org/install.html) to get started.
+
+### TL;DR
+
+```sh
+$ brew update && \
+  brew install elixir && \
+  mix local.hex && \
+  mix archive.install https://github.com/phoenixframework/archives/raw/master/phoenix_new.ez && \
+  docker run -d -p 5432:5432 postgres && \
+  mix phoenix.new rest-api --no-html --no-brunch && \
+  cd restapi
+```
+
+### The slightly longer version
+
+For Mac OS just get [brew](http://brew.sh/index_de.html) and do a
+
+```sh
+$ brew update && brew install elixir
+```
+
+which should install both Erlang and Elixir.
+If everything went well you can fire up `iex` (Interactive Elixir) in the terminal of your choice and let it print something useful with
+
+```sh
+iex(1)> h Map
+```
+
+Awesome, we have an interactive shell with integrated documentation 👌.
+We have the VM, we have the compiler.
+We need some sort of package manager!
+Oh, did I mention `mix`?
+It's a tool for running tasks like scaffolding, installing dependencies, executing tests, and of course for creating cocktails.
+Basically, it's `npm` on steroids.
+And it can get us our package manager:
+
+```sh
+$ mix local.hex
+```
+
+Once we have `hex`, we can get the latest phoenix archive (because we need hex for installing phoenix' dependencies)
+
+```sh
+$ mix archive.install https://github.com/phoenixframework/archives/raw/master/phoenix_new.ez
+```
+
+As we're going to build a tiny REST API we don't need any sort of assets like images, CSS, or JavaScript.
+I'm telling you that because Phoenix usually uses **brunch** to compile these statics (which would require `nodejs`).
+The only other thing we do need is a database.
+The default database Ecto uses is PostgreSQL but you could also opt for MySQL if you like that better.
+If you have [Docker](https://www.docker.com/) installed, a simple
+
+```sh
+$ docker run -p 5432:5432 postgres
+```
+
+will download the image and run your database container on `127.0.0.1:5432` with the user `postgres` and no password.
+We're set.
+Run
+
+```sh
+$ mix phoenix.new rest-api --no-html --no-brunch
+```
+
+and agree to install dependencies.
+You'll see a couple of files being created.
+As well as instructions on how to start the server and how to configure/initialize your database.
+
+## REST API action ahead
+
+Let's be brave and run a one liner
+
+```sh
+$ mix ecto.create && mix phoenix.server
+```
+
+This will create a new database for development (Phoenix automatically creates suffixed databases for `_dev`, `_test` and `_prod` depending on the environment) and start the server on port 4000.
+When opening your browser of choice the first thing you should see when navigating to `https://localhost:4000` is an error message.
+Bummer.
+Hey, at least it's a beautiful one and it tells you what exactly went wrong.
+Remember we told `mix` not to create any html files or bundle static assets?
+With that it also did not create any views (except for the error view) or their related routes (e.g. `/`) in the router.
+The only scope (and pipeline) we have is `/api` (which is exactly what we wanted).
+
+Let's add a new controller that will serve some `shops` once a request is routed to it.
+You could do this by hand or by `mix`, your choice.
+The task for generating resources expects you to provide a singular and a plural name as well as some (optional) fields:
+
+```bash
+$ mix phoenix.gen.json Shop shops name:string
+```
+
+Handy, `mix` not only tells us how to create a route to access this controller it also creates the model including a database migration, a view and tests for all of them (I'm sure now you're glad you `mix`ed it).
+We'll do exactly what `mix` suggests and copy the line into our `web/router.ex` (and run `mix ecto.migrate` to update the database).
+To check which routes the aforementioned line creates just run `mix phoenix.routes`.
+We only want to retrieve a particular shop for this example so we (literally) tell Phoenix: `only: [:show]` instead of `except: [:new, :edit]`.
+When we run `mix phoenix.routes` again we should see only one route left.
+In this case we could have specified the one route ourselves:
 
 ```elixir
-my_numbers = [-2, 3, 5, -34, 0, 32]
-result = for n <- my_numbers, n > 0, do: n * 2
+get "/shops/:name", ShopController, :show
 ```
 
-Note that the last statement of every Elixir function is automatically returned creating a new list bound to `result`.
-What actually looks like an assignment `=` is actually a `match`.
-Trying to match `result = 4` afterwards will give you an error, since the compiler tries to match `[6, 10, 64] = 4`.
-This might look strange at first, yet makes more sense once you grasp concepts like pattern matching or destructuring.
+And we will exactly use that line instead of the resource.
+First of all it's more explicit and second of all we want the parameter to be `name` anyway (we could also specify this when using a resource but it's simpler this way).
+The `:show` atom specifies the controller function to call when this route is accessed.
+So let's access `http://localhost/api/shops/foo` and see what happens.
 
-After looking at the above described language features, I cannot circumvent a few basic facts.
-Elixir runs on the [Erlang](https://www.erlang.org/){:target="\_blank"} VM (BEAM) and gives you the great ecosystem companies like _Heroku_ and _WhatsApp_ use to build their products.
-It kind of relates to Erlang like Scala relates to Java (JVM).
-Likewise, you can import Erlang modules and use them right away.
-Elixir's syntax is concise and reminds of the Ruby programming language due to the fact that the creator [José Valim](https://github.com/josevalim){:target="\_blank"} is a very active member of the ruby community.
-
-Ok, let's see some more Elixir code and compare it to JavaScript ES6.
-
-Elixir
+Hooray, the `NoRouteError` is gone, only to give us another one.
+Ecto still tries to find our shop in the database by id.
+Open the `web/controllers/shop_controller.ex` and check the `show` function.
+It expects to get our connection and extracts the `id` from the passed parameters.
+Lets extract the `name` instead and tell it to look for it by name since `Repo.get/3` tries to find a match by primary key.
 
 ```elixir
-# Printing the sum of a list
-Enum.reduce([1, 2, 3, 5, 8], fn(item, acc) -> acc + item end) |> IO.puts
-
-# or without explicitly naming the parameters
-Enum.reduce([1, 2, 3, 5, 8], &(&1 + &2)) |> IO.puts
-```
-
-JS
-
-```js
-// Printing the sum of an array
-console.log([1, 2, 3, 5, 8].reduce((acc, item) => acc + item))
-```
-
-Elixir
-
-```elixir
-# And we all love fibonacci right?
-defmodule Fibonacci do
-    def calc (n) when n < 2, do: 1
-    def calc (n), do: calc(n - 2) + calc(n - 1)
+def show(conn, %{"name" => name}) do
+    shop = Repo.get_by(Shop, name: name)
+    render(conn, "show.json", shop: shop)
 end
 ```
 
-JS
+You should see something like
 
 ```js
-// We all do love fibonacci!
-function fibonacci(n) {
-  if (n < 2) return 1
-
-  return fibonacci(n - 2) + fibonacci(n - 1)
+{
+"data": null
 }
 ```
 
-### Enough of the platform
+In case you get an error make sure you ran `mix ecto.migrate` to have Ecto create the `shops` table.
+Of course, there's no shop with the name "foo" in our database.
+Let's fix that.
+Open `priv/repo/seeds.exs` and enter the following:
 
-At this point I'll stop listing language features Elixir provides since this post is only meant for sweetening.
-I will also not try to persuade you that this is the right language to learn and use.
-Anyway, you should probably check some resources and dive a bit deeper into the awesome world of functional programming.
-A good place to start is [the official elixir-lang site](http://elixir-lang.org/){:target="\_blank"}.
-Just click around and look at some beautiful code and examples.
+```elixir
+alias Restapi.Repo
+alias Restapi.Shop
 
-You think Elixir is not for you?
-Check out another functional language then!
-Take a look at [Scala](https://www.scala-lang.org/){:target="\_blank"}, [Haskell](https://www.haskell.org/){:target="\_blank"} or Erlang itself.
-I personally think your daily (programming) life will benefit from everything you learn, even if you do not actively use these languages for development.
+Repo.insert! %Shop{name: "foo"}
+```
 
-**Next up**: The Phoenix web framework.
-See how it works and which concepts and tools it uses to keep your project bloat-free, how it makes your development faster and delivers responses within microseconds.
+The two alias statements let us use `Repo` and `Shop` without prefixing `Restapi`.
+Then we simply insert one record (Shop) with the name "foo". Run
+
+```sh
+$ mix run priv/repo/seeds.exs
+```
+
+to insert the shop.
+Accessing `http://localhost/api/shops/foo` again should yield the expected result now.
+
+There's a lot to explore from here on and there's (of course) a lot missing in our little example.
+
+- Check `web/views/shop_view.ex` to see which fields fetched from the database and passed by the controller are actually used to render the view (`updated_at` and `inserted_at` are fetched but don't appear in the response, right?)
+- Add some more records in the `seeds.exs` and `GET` them
+- Add a route to list all available shops
+- Create an HTML application instead of a REST API
+- ...
+
+This being probably the smallest and least comprehensive tutorial ever, I encourage you to check the awesome [Phoenix Guides](http://www.phoenixframework.org/docs/overview) which will teach you about everything covered here, and more, in much more depth.
+I hope these posts made you curious and showed you some things beyond the JavaScript world.
+[Let me know](https://twitter.com/epagesdevs?lang=de) what you think.
+
+Thanks for reading.
+
