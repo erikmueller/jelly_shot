@@ -686,9 +686,10 @@ brorand@^1.0.1:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/brorand/-/brorand-1.1.0.tgz#12c25efe40a45e3c323eb8675a0a0ce57b22371f"
 
-brotli-webpack-plugin@1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/brotli-webpack-plugin/-/brotli-webpack-plugin-1.0.0.tgz#c63e811939f786b581a3d0b20bfaae752f4c35dd"
+brotli-webpack-plugin@1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/brotli-webpack-plugin/-/brotli-webpack-plugin-1.1.0.tgz#57168f1f109c07d45b412f52b287fc9dab50103c"
+  integrity sha512-byxKhV7L/OsN9urBgcD8Gkgq0OW61KYdSBwN249vT77VRl+9iz6TlWDXhg45rwYynZYetr+WRVuUvQ5WzwcYDQ==
   dependencies:
     async "~2.6.0"
     webpack-sources "^1.0.2"
