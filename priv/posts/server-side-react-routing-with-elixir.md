@@ -214,7 +214,7 @@ We can then render our EEx template with the delivered render output, and set th
 
 Besides having had a lot of fun experimenting there are some advantages over using a Node.js app. With the external renderer script we can prevent the whole server from crashing when rendering 3rd party generated content on the server (3rd party themes in our special case). But there’s more. I did a little (naive) benchmark with [wrk](https://github.com/wg/wrk){:target="_blank"}. Check the latency (render timings) for different numbers of open connections:
 
-![Plug beats node with increasing number of parallel connections](assets/express-plug-react.png)
+![Plug beats node with increasing number of parallel connections](/assets/express-plug-react.png)
 
 The test was run with `wrk -c {10,50,100,200} -d 30s http://127.0.0.1` on a MacBook Pro 2016 (i7 2.6GHz, 16GB RAM). In contrast to the single-threaded Node.js server, our Plug-based server can create a pool of render processes:
 
