@@ -29,7 +29,7 @@
     "css-loader": "1.0.0",
     "file-loader": "1.1.11",
     "glob": "^7.1.2",
-    "highlight.js": "9.12.0",
+    "highlight.js": "10.4.1",
     "image-webpack-loader": "4.3.1",
     "imagemin-mozjpeg": "^6.0.0",
     "imagemin-webpack-plugin": "^2.1.5",
