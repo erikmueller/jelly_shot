@@ -33,7 +33,7 @@
     "image-webpack-loader": "4.3.1",
     "imagemin-mozjpeg": "^6.0.0",
     "imagemin-webpack-plugin": "^2.1.5",
-    "less": "3.7.1",
+    "less": "3.13.1",
     "less-loader": "4.1.0",
     "mini-css-extract-plugin": "0.4.1",
     "optimize-css-assets-webpack-plugin": "5.0.0",
